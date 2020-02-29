@@ -1,0 +1,71 @@
+copyright: "Copyright &copy; 2020 David Han. A written permission is required for reproduction."
+dev_addr: "0.0.0.0:9000"
+docs_dir: "docs"
+
+extra:
+  version: 1.0
+  social:
+    - type: "github"
+      link: "https://github.com/dpkwhan"
+    - type: "linkedin"
+      link: "https://www.linkedin.com/in/zhaohuihan/"
+
+extra_css:
+  - assets/css/extra.css
+  - "https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css"
+
+extra_javascript:
+  # See /syntax/#projection to see if MathJax is working
+  - "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"
+  - "https://code.jquery.com/jquery-3.1.1.min.js"
+  - "https://tracker.mrpfd.com/tracker.js"
+  - "https://use.fontawesome.com/releases/v5.2.0/js/all.js"
+  # theme.js modifies HTML to prepare for prism.js
+  - assets/js/theme.js
+  - "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"
+  # Prism script includes plugin Copy to Clipboard http://prismjs.com/download.html
+  # Omits plugins Command Line, Line highlight, and Line Numbers: no effect
+  - assets/js/prism.js
+
+google_analytics:
+  - "UA-140259656-1"
+  - "auto"
+
+markdown_extensions:
+  - admonition
+  - extra
+  - pymdownx.arithmatex
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.tilde
+  - toc:
+      permalink: false
+
+remote_branch: "master"
+site_dir: "site"
+site_author: "David Han"
+site_description: "weekly q"
+site_name: "weekly q"
+site_url: "https://dpkwhan.github.io/weeklyq/"
+use_directory_urls: true
+theme:
+  favicon: "assets/img/profile-pic.jpg"
+  feature:
+    tabs: true
+  name: "material"
+  logo: "assets/img/profile-pic.jpg"
+  palette:
+    primary: "blue"
+    accent: "deep orange"
+  toc:
+    title: "On this page"
+
+nav:
+  - Home: index.md
+  - 2020:
+      - 2020/2020.03.02.md
+      - 2020/2020.02.24.md
+      - 2020/2020.02.17.md
+  - 2019:
+      - 2019/2019.12.30.md
+      - 2019/2019.12.23.md
