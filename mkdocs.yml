@@ -41,7 +41,6 @@ markdown_extensions:
   - toc:
       permalink: false
 
-remote_branch: "master"
 site_dir: "site"
 site_author: "David Han"
 site_description: "weekly q"
