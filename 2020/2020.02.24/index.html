@@ -37,7 +37,7 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../../assets/img/profile-pic.jpg">
+      <link rel="shortcut icon" href="../../assets/img/logo.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
     
     
@@ -129,7 +129,7 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         <a href="https://dpkwhan.github.io/weeklyq/" title="weekly q" aria-label="weekly q" class="md-header-nav__button md-logo">
           
-            <img alt="logo" src="../../assets/img/profile-pic.jpg" width="24" height="24">
+            <img alt="logo" src="../../assets/img/logo.png" width="24" height="24">
           
         </a>
       </div>
@@ -219,19 +219,6 @@
   
 
       
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../2019/2019.12.30/" class="md-tabs__link">
-          2019
-        </a>
-      
-    </li>
-  
-
-      
     </ul>
   </div>
 </nav>
@@ -247,7 +234,7 @@
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href="https://dpkwhan.github.io/weeklyq/" title="weekly q" class="md-nav__button md-logo">
       
-        <img alt="logo" src="../../assets/img/profile-pic.jpg" width="48" height="48">
+        <img alt="logo" src="../../assets/img/logo.png" width="48" height="48">
       
     </a>
     weekly q
@@ -404,54 +391,6 @@
   </li>
 
     
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
-    
-    <label class="md-nav__link" for="nav-3">
-      2019
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        2019
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../2019/2019.12.30/" title="2019.12.30" class="md-nav__link">
-      2019.12.30
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../2019/2019.12.23/" title="2019.12.23" class="md-nav__link">
-      2019.12.23
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
   </ul>
 </nav>
                   </div>
@@ -537,10 +476,10 @@
                 
                   <h1>2020.02.24</h1>
                 
-                <h2 id="introduction">Introduction</h2>
+                <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>One common operation on a dictionary is to add an new key to an existing dictionary. This operation looks quite easy
 and straightforward at first sight, but there is a trap to fall into.</p>
-<h2 id="question">Question</h2>
+<h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
 <p>Suppose you have a dictionary <code>d</code> defined as follows:</p>
 <pre><code class="q">q) d:`firstName`lastName!`Tom`Jerry
 </code></pre>
@@ -553,7 +492,7 @@ lastName | Jerry
 age      | 37
 </code></pre>
 
-<h2 id="answer">Answer</h2>
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
 <p>The immediate solution that comes to many people's mind is to add the new key <code>age</code> is:</p>
 <pre><code class="q">q) d[`age]:37
 </code></pre>
@@ -571,7 +510,7 @@ age      | 37
 <li>The value type of new item <code>age</code> is different from the value type of the existing items in the dictionary</li>
 </ul>
 <p>Let's look at two different cases.</p>
-<h3 id="mixed-value-type">Mixed Value Type</h3>
+<h3 id="mixed-value-type">Mixed Value Type<a class="headerlink" href="#mixed-value-type" title="Permanent link">&para;</a></h3>
 <p>A new key can be simply added by assigning the value to the new key when the existing dictionary's values are of
 mixed types. For example, the value of dictionary <code>d2</code> has types of <code>symbol</code> and <code>long</code>, <em>i.e.</em>,
 <code>(`Tom;`Jerry;10583)</code> is of mixed type.</p>
@@ -589,7 +528,7 @@ zip      | 10583
 age      | 37
 </code></pre>
 
-<h3 id="uniform-value-type">Uniform Value Type</h3>
+<h3 id="uniform-value-type">Uniform Value Type<a class="headerlink" href="#uniform-value-type" title="Permanent link">&para;</a></h3>
 <ul>
 <li>The new value has the same type as the existing dictionary's value</li>
 </ul>
@@ -616,7 +555,7 @@ lastName | `Jerry
 age      | 37
 </code></pre>
 
-<h3 id="summary">Summary</h3>
+<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
 <p>The robust approach to insert a new item into an dictionary is first create a new dictionary using the new item and
 merge this new dictionary with the existing dictionary using the <a href="https://code.kx.com/q/ref/join/">join operator</a>.</p>
                 
@@ -687,15 +626,6 @@ merge this new dictionary with the existing dictionary using the <a href="https:
           Material for MkDocs</a>
       </div>
       
-  <div class="md-footer-social">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
-    
-      <a href="https://github.com/dpkwhan" target="_blank" rel="noopener" title="github" class="md-footer-social__link fa fa-github"></a>
-    
-      <a href="https://www.linkedin.com/in/zhaohuihan/" target="_blank" rel="noopener" title="linkedin" class="md-footer-social__link fa fa-linkedin"></a>
-    
-  </div>
-
     </div>
   </div>
 </footer>

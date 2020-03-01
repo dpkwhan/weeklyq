@@ -37,7 +37,7 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../../assets/img/profile-pic.jpg">
+      <link rel="shortcut icon" href="../../assets/img/logo.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
     
     
@@ -129,7 +129,7 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         <a href="https://dpkwhan.github.io/weeklyq/" title="weekly q" aria-label="weekly q" class="md-header-nav__button md-logo">
           
-            <img alt="logo" src="../../assets/img/profile-pic.jpg" width="24" height="24">
+            <img alt="logo" src="../../assets/img/logo.png" width="24" height="24">
           
         </a>
       </div>
@@ -219,19 +219,6 @@
   
 
       
-        
-  
-  
-    <li class="md-tabs__item">
-      
-        <a href="../../2019/2019.12.30/" class="md-tabs__link">
-          2019
-        </a>
-      
-    </li>
-  
-
-      
     </ul>
   </div>
 </nav>
@@ -247,7 +234,7 @@
   <label class="md-nav__title md-nav__title--site" for="__drawer">
     <a href="https://dpkwhan.github.io/weeklyq/" title="weekly q" class="md-nav__button md-logo">
       
-        <img alt="logo" src="../../assets/img/profile-pic.jpg" width="48" height="48">
+        <img alt="logo" src="../../assets/img/logo.png" width="48" height="48">
       
     </a>
     weekly q
@@ -377,54 +364,6 @@
   </li>
 
     
-      
-      
-      
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
-    
-    <label class="md-nav__link" for="nav-3">
-      2019
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-3">
-        2019
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../2019/2019.12.30/" title="2019.12.30" class="md-nav__link">
-      2019.12.30
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../2019/2019.12.23/" title="2019.12.23" class="md-nav__link">
-      2019.12.23
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
   </ul>
 </nav>
                   </div>
@@ -483,25 +422,29 @@
                 
                   <h1>2020.02.17</h1>
                 
-                <h2 id="introduction">Introduction</h2>
-<p>In the electronic trading world, parameterization is so common that some Algorithms are configured
-with hundreds or thousands of parameters. An algorithmic order can easily has hundreds of parameters
-and some of which are exposed to users so that they can amend the order attibutes. For example, the
-participation rate of a POV (Percent Of Volume) order can be amended by users. A common question
-encountered in the our daily work is which parameters are modified and how it is changed when an
-amend happens.</p>
-<h2 id="question">Question</h2>
+                <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>In the algorithmic trading world, parameterization is so common that some algorithms are configured with hundreds
+or thousands of parameters. An algorithmic parent order can easily has hundreds of parameters and some of which are
+exposed to algorithm users so that they can update the order attributes. For example, the participation rate of a POV
+(Percent Of Volume) order can be amended by end users at any time during the trading duration. A common question
+encountered in the analysis of algorithm and/or smart order router behavior is</p>
+<ul>
+<li>what parameters are modified, and</li>
+<li>how they are updated</li>
+</ul>
+<p>when an amend event is initiated by an algorithmic trader.</p>
+<h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
 <p>Below is an example history of a few selected parameters of a POV order. Create a table to
 show the parameter history with each parameter name as the column name in the table. You need to
 treat the change in order quantity and/or price limit the same as parameter change.</p>
 <pre><code class="q">paramTbl:([]time:`time$();orderQty:`long$();limitPrice:`float$();params:());
-`paramTbl insert (09:30:56.123;500000;0n;`StartTime`ParticipationRate!(10:00:00.000;0.08));
-`paramTbl insert (09:35:44.735;500000;0n;`StartTime`ParticipationRate!(09:40:00.000;0.08));
-`paramTbl insert (10:01:25.941;500000;0n;`StartTime`ParticipationRate!(09:40:00.000;0.12));
-`paramTbl insert (10:10:32.356;500000;0n;`StartTime`ParticipationRate`MinParcipationRate`MaxParcipationRate!(09:40:00.000;0.12;0.10;0.14));
-`paramTbl insert (10:30:39.475;500000;45.23;`StartTime`ParticipationRate`MinParcipationRate`MaxParcipationRate!(09:40:00.000;0.12;0.10;0.14));
-`paramTbl insert (11:00:52.092;600000;45.27;`StartTime`ParticipationRate`MinParcipationRate`MaxParcipationRate!(09:40:00.000;0.12;0.10;0.14));
-`paramTbl insert (11:00:52.092;1000000;0n;`StartTime`ParticipationRate!(09:40:00.000;0.15));
+`paramTbl insert (09:30:56.123;500000;0n;`StartTime`PovRate!(10:00:00.000;0.08));
+`paramTbl insert (09:35:44.735;500000;0n;`StartTime`PovRate!(09:40:00.000;0.08));
+`paramTbl insert (10:01:25.941;500000;0n;`StartTime`PovRate!(09:40:00.000;0.12));
+`paramTbl insert (10:10:32.356;500000;0n;`StartTime`PovRate`MinPovRate`MaxPovRate!(09:40:00.000;0.12;0.10;0.14));
+`paramTbl insert (10:30:39.475;500000;45.23;`StartTime`PovRate`MinPovRate`MaxPovRate!(09:40:00.000;0.12;0.10;0.14));
+`paramTbl insert (11:00:52.092;600000;45.27;`StartTime`PovRate`MinPovRate`MaxPovRate!(09:40:00.000;0.12;0.10;0.14));
+`paramTbl insert (11:00:52.092;1000000;0n;`StartTime`PovRate!(09:40:00.000;0.15));
 </code></pre>
 
 <p>The final output table should look like as follows. Note in kdb table, the empty cell in the table below should have
@@ -513,9 +456,9 @@ proper null value.</p>
 <th align="center">OrderQty</th>
 <th align="center">LimitPrice</th>
 <th align="center">StartTime</th>
-<th align="center">ParticipationRate</th>
-<th align="center">MinParcipationRate</th>
-<th align="center">MaxParcipationRate</th>
+<th align="center">PovRate</th>
+<th align="center">MinPovRate</th>
+<th align="center">MaxPovRate</th>
 </tr>
 </thead>
 <tbody>
@@ -584,31 +527,30 @@ proper null value.</p>
 </tr>
 </tbody>
 </table>
-<h2 id="answer">Answer</h2>
-<p>The answer below shows a few tips about dictionary manipulation:</p>
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>The answer below shows a few tips on dictionary manipulation:</p>
 <ul>
-<li>Use <code>raze</code> to merge multiple dictionaries into a single dictionary</li>
+<li>Use <code>raze</code> to merge a list of dictionaries with values of possible different types into a single dictionary</li>
 <li>Find the proper null values for each dictionary key</li>
-<li>Merge two dictionaries with comma</li>
+<li>Merge two dictionaries with join operator</li>
 <li>Merge two tables side by side</li>
 </ul>
-<pre><code class="q">flattenParams:{[paramTbl]
-    / Merge all parameter into a single dictionary so as to get a full list of parameter names
-    allParams:raze exec params from paramTbl;
+<pre><code class="q">{[paramTbl]
+  / Merge all parameters into a single dictionary so as to get a full list of parameter names
+  allParams:raze exec params from paramTbl;
 
-    / Find the null value for each parameter name
-    nullValues:(key allParams)!(enlist each value allParams)[;1];
+  / Find the null value for each parameter name
+  nullValues:(key allParams)!(enlist each value allParams)[;1];
 
-    / Create a table of &quot;parameter&quot; change history of order qty and limit price
-    params1:select time,OrderQty:orderQty,LimitPrice:limitPrice from paramTbl;
+  / Create a table of &quot;parameter&quot; change history of order qty and limit price
+  params1:select time,OrderQty:orderQty,LimitPrice:limitPrice from paramTbl;
 
-    / Set a proper null value to parameters that are not present
-    params2:exec {x,y}[nullValues;] each params from paramTbl;
+  / Set a proper null value to parameters that are not present
+  params2:exec {x,y}[nullValues;] each params from paramTbl;
 
-    / Combine the normal parameters with the pseudo parameters
-    params1,'params2
-  };
-flattenParams[paramTbl]
+  / Combine the normal parameters with the pseudo parameters
+  params1,'params2
+}[paramTbl]
 </code></pre>
                 
                   
@@ -646,20 +588,6 @@ flattenParams[paramTbl]
           </a>
         
         
-          <a href="../../2019/2019.12.30/" title="2019.12.30" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                2019.12.30
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
       </nav>
     </div>
   
@@ -678,15 +606,6 @@ flattenParams[paramTbl]
           Material for MkDocs</a>
       </div>
       
-  <div class="md-footer-social">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
-    
-      <a href="https://github.com/dpkwhan" target="_blank" rel="noopener" title="github" class="md-footer-social__link fa fa-github"></a>
-    
-      <a href="https://www.linkedin.com/in/zhaohuihan/" target="_blank" rel="noopener" title="linkedin" class="md-footer-social__link fa fa-linkedin"></a>
-    
-  </div>
-
     </div>
   </div>
 </footer>
