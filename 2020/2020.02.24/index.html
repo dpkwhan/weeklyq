@@ -542,7 +542,7 @@ state    | NY
 
 <ul>
 <li>The new value's type is different from the type of the existing dictionary's value. In this case, we can create a
-second dictonary using the new key/value and then merge this dictionary with the existing dictionary. For example,</li>
+second dictionary using the new key/value and then merge this dictionary with the existing dictionary. For example,</li>
 </ul>
 <pre><code class="q">q) d4:`firstName`lastName!`Tom`Jerry
 q) d4
@@ -555,6 +555,8 @@ lastName | `Jerry
 age      | 37
 </code></pre>
 
+<p>The right side of the join operator (<code>,</code>) above is a singleton dictionary. Note that both the key and the value
+of a dictionary are required to be lists, you must enlist atomic value to create a singleton dictionary.</p>
 <h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
 <p>The robust approach to insert a new item into an dictionary is first create a new dictionary using the new item and
 merge this new dictionary with the existing dictionary using the <a href="https://code.kx.com/q/ref/join/">join operator</a>.</p>
