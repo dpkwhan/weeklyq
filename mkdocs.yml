@@ -2,14 +2,6 @@ copyright: "Copyright &copy; 2020 David Han. A written permission is required fo
 dev_addr: "0.0.0.0:9000"
 docs_dir: "docs"
 
-extra:
-  version: 1.0
-  social:
-    - type: "github"
-      link: "https://github.com/dpkwhan"
-    - type: "linkedin"
-      link: "https://www.linkedin.com/in/zhaohuihan/"
-
 extra_css:
   - assets/css/extra.css
   - "https://cdnjs.cloudflare.com/ajax/libs/prism/1.17.1/themes/prism-solarizedlight.min.css"
@@ -31,6 +23,13 @@ google_analytics:
   - "UA-140259656-1"
   - "auto"
 
+# extra:
+#   social:
+#     - type: "github"
+#       link: "https://github.com/dpkwhan"
+#     - type: "linkedin"
+#       link: "https://www.linkedin.com/in/zhaohuihan/"
+
 markdown_extensions:
   - admonition
   - extra
@@ -39,7 +38,7 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tilde
   - toc:
-      permalink: false
+      permalink: true
 
 site_dir: "site"
 site_author: "David Han"
@@ -48,11 +47,11 @@ site_name: "weekly q"
 site_url: "https://dpkwhan.github.io/weeklyq/"
 use_directory_urls: true
 theme:
-  favicon: "assets/img/profile-pic.jpg"
+  favicon: "assets/img/logo.png"
   feature:
     tabs: true
   name: "material"
-  logo: "assets/img/profile-pic.jpg"
+  logo: "assets/img/logo.png"
   palette:
     primary: "blue"
     accent: "deep orange"
