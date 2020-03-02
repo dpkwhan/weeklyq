@@ -409,7 +409,39 @@
                   <h1>2020.03.02</h1>
                 
                 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>The first thing to do in most quantitative analysis in the electronic trading is to determine the data scope, which covers two aspects:</p>
+<ul>
+<li>the sample period, <em>i.e.</em> the start and end date/time of the data</li>
+<li>the cross sectional space, <em>i.e.</em> the universe of securities included in the analysis</li>
+</ul>
+<p>A common approach to determine the security universe is to include the top <code>n</code> most actively traded symbols.</p>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
+<p>Assuming a <code>trade</code> table, which has three columns: <code>date</code>, <code>ticker</code> and <code>volume</code>, is simulated with the function <code>simulateTrades</code> defined below. This function generates <code>500000</code> trades for all week days in March 2020. The stock ticker is generated as three random letters. The column <code>volume</code> indicates how many shares are traded.</p>
+<pre><code class="q">getTradingDays:{
+    firstDate:2020.03.01;
+    lastDate:2020.03.31;
+    dates:firstDate+til (lastDate-firstDate)+1;
+    dates where not (dates mod 7) in 0 1
+  };
+
+simulateTrades:{
+    nTrades:500000;
+    tradingDays:getTradingDays[];
+
+    system &quot;S -314159&quot;;
+    dates:nTrades?tradingDays;
+
+    system &quot;S -314159&quot;;
+    tickers:nTrades?`3;
+
+    system &quot;S -314159&quot;;
+    volumes:100*nTrades?1+til 100;
+
+    ([]date:dates;ticker:tickers;volume:volumes)
+  };
+</code></pre>
+
+<p>Find the top 10 symbols that are most actively traded (measured by total traded shares) on each day.</p>
                 
                   
                 
