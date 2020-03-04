@@ -352,6 +352,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#a-generic-approach" class="md-nav__link">
+    A generic approach
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     Summary
   </a>
@@ -482,6 +489,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#a-generic-approach" class="md-nav__link">
+    A generic approach
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     Summary
   </a>
@@ -554,13 +568,13 @@ mixed types. For example, the value of dictionary <code>d2</code> has types of <
 q) d2
 firstName| `Tom
 lastName | `Jerry
-zip      | 10583
+zipcode  | 10583
 
 q) d2[`age]:37 / add a new item
 q) d2
 firstName| `Tom
 lastName | `Jerry
-zip      | 10583
+zipcode  | 10583
 age      | 37
 </code></pre>
 
@@ -593,9 +607,18 @@ age      | 37
 
 <p>The right side of the join operator (<code>,</code>) above is a singleton dictionary. Note that both the key and the value
 of a dictionary are required to be lists, you must enlist atomic value to create a singleton dictionary.</p>
+<h3 id="a-generic-approach">A generic approach<a class="headerlink" href="#a-generic-approach" title="Permanent link">&para;</a></h3>
+<p>The q-sql <code>update</code> template can be used to update a dictionary:</p>
+<pre><code class="q">update age:37,zipcode:10583,address:&quot;231 Park Ave&quot; from d
+</code></pre>
+
+<p>This approach is very generic and works irrespective the value types of the existing dictionary.</p>
 <h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
-<p>The robust approach to insert a new item into an dictionary is first create a new dictionary using the new item and
-merge this new dictionary with the existing dictionary using the <a href="https://code.kx.com/q/ref/join/">join operator</a>.</p>
+<p>The robust approaches to insert a new item into an dictionary are:</p>
+<ol>
+<li>first create a new dictionary using the new item and merge this new dictionary with the existing dictionary using the <a href="https://code.kx.com/q/ref/join/">join operator</a>.</li>
+<li>use q-sql the <code>update</code> template to add new items to a dictionary or update the value of an existing item.</li>
+</ol>
                 
                   
                 
