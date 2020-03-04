@@ -352,6 +352,30 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2020.02.10/" title="2020.02.10" class="md-nav__link">
+      2020.02.10
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2020.02.03/" title="2020.02.03" class="md-nav__link">
+      2020.02.03
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -424,24 +448,30 @@
     dates where not (dates mod 7) in 0 1
   };
 
-simulateTrades:{
-    nTrades:500000;
+simulateTrades:{[seed;nTrades]
     tradingDays:getTradingDays[];
 
-    system &quot;S -314159&quot;;
+    system &quot;S &quot;,string seed;
     dates:nTrades?tradingDays;
 
-    system &quot;S -314159&quot;;
+    system &quot;S &quot;,string seed;
     tickers:nTrades?`3;
 
-    system &quot;S -314159&quot;;
+    system &quot;S &quot;,string seed;
     volumes:100*nTrades?1+til 100;
 
-    ([]date:dates;ticker:tickers;volume:volumes)
+    ([] date:dates;ticker:tickers;volume:volumes)
   };
+trades:simulateTrades[-314159;5000000]
 </code></pre>
 
-<p>Find the top 10 symbols that are most actively traded (measured by total traded shares) on each day.</p>
+<p>Find the top 10 symbols that are most actively traded (measured by total traded shares) on each day. The returned table should have 220 rows, <em>i.e.</em> 10 rows for each day and the following schema:</p>
+<pre><code class="q">topTradedSymbols:([]
+  date:`date$();
+  ticker:`symbol$();
+  dailyVol:`long$()
+)
+</code></pre>
                 
                   
                 

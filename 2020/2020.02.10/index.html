@@ -13,7 +13,7 @@
         <meta name="description" content="weekly q">
       
       
-        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.02.24/">
+        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.02.10/">
       
       
         <meta name="author" content="David Han">
@@ -42,7 +42,7 @@
     
     
       
-        <title>2020.02.24 - weekly q</title>
+        <title>2020.02.10 - weekly q</title>
       
     
     
@@ -144,7 +144,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                2020.02.24
+                2020.02.10
               
             </span>
           
@@ -291,6 +291,30 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../2020.02.24/" title="2020.02.24" class="md-nav__link">
+      2020.02.24
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2020.02.17/" title="2020.02.17" class="md-nav__link">
+      2020.02.17
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -300,11 +324,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        2020.02.24
+        2020.02.10
       </label>
     
-    <a href="./" title="2020.02.24" class="md-nav__link md-nav__link--active">
-      2020.02.24
+    <a href="./" title="2020.02.10" class="md-nav__link md-nav__link--active">
+      2020.02.10
     </a>
     
       
@@ -334,33 +358,6 @@
     Answer
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mixed-value-type" class="md-nav__link">
-    Mixed Value Type
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#uniform-value-type" class="md-nav__link">
-    Uniform Value Type
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
       
@@ -371,30 +368,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../2020.02.17/" title="2020.02.17" class="md-nav__link">
-      2020.02.17
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../2020.02.10/" title="2020.02.10" class="md-nav__link">
-      2020.02.10
-    </a>
   </li>
 
         
@@ -452,33 +425,6 @@
     Answer
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mixed-value-type" class="md-nav__link">
-    Mixed Value Type
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#uniform-value-type" class="md-nav__link">
-    Uniform Value Type
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    Summary
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
       
@@ -498,92 +444,54 @@
               
                 
                 
-                  <h1>2020.02.24</h1>
+                  <h1>2020.02.10</h1>
                 
                 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>One common operation on a dictionary is to add an new key to an existing dictionary. This operation looks quite easy
-and straightforward at first sight, but there is a trap to fall into.</p>
+<p>Let's go one step further by continuing the question from last week. A question asked by algorithmic traders quite often is how many open orders are live on market at any given time.</p>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
-<p>Suppose you have a dictionary <code>d</code> defined as follows:</p>
-<pre><code class="q">q) d:`firstName`lastName!`Tom`Jerry
-</code></pre>
-
-<p>How to add a new key <code>age</code> with value <code>37</code> to this dictionary? After adding the new key, the updated dictionary
-should look like:</p>
-<pre><code class="q">q) d
-firstName| Tom
-lastName | Jerry
-age      | 37
-</code></pre>
-
+<p>Find the time series of the number of open child orders. The question from last week is simply a special case of this question. The output is a table with two columns like below:</p>
+<table>
+<thead>
+<tr>
+<th align="center">startTime</th>
+<th align="center">nOpenOrders</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">09:30:00.000</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">hh:mm:ss.SSS</td>
+<td align="center">x</td>
+</tr>
+<tr>
+<td align="center">hh:mm:ss.SSS</td>
+<td align="center">y</td>
+</tr>
+<tr>
+<td align="center">hh:mm:ss.SSS</td>
+<td align="center">z</td>
+</tr>
+</tbody>
+</table>
 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
-<p>The immediate solution that comes to many people's mind is to add the new key <code>age</code> is:</p>
-<pre><code class="q">q) d[`age]:37
-</code></pre>
-
-<p>Unfortunately, a <code>type</code> error is thrown when doing that:</p>
-<pre><code class="q">q) d[`age]:37
-'type
-  [0]  d[`age]:37
-              ^
-</code></pre>
-
-<p>The <code>type</code> error occurs because:</p>
+<p>The child order count should increase by 1 at each order's submission time (<code>subT</code>) and decrease by 1 when the order is removed from the market at exit time (<code>exitT</code>). Based on this reasoning logic, three tables are created:</p>
 <ul>
-<li>The existing dictionary <code>d</code> is uniform, and</li>
-<li>The value type of new item <code>age</code> is different from the value type of the existing items in the dictionary</li>
+<li>The first table contains one row, which has order count of zero to accommodate the time period from market open to the time when the first child order is created.</li>
+<li>The second table contains all new orders.</li>
+<li>The third table records all orders which are removed from market.</li>
 </ul>
-<p>Let's look at two different cases.</p>
-<h3 id="mixed-value-type">Mixed Value Type<a class="headerlink" href="#mixed-value-type" title="Permanent link">&para;</a></h3>
-<p>A new key can be simply added by assigning the value to the new key when the existing dictionary's values are of
-mixed types. For example, the value of dictionary <code>d2</code> has types of <code>symbol</code> and <code>long</code>, <em>i.e.</em>,
-<code>(`Tom;`Jerry;10583)</code> is of mixed type.</p>
-<pre><code class="q">q) d2:`firstName`lastName`zip!(`Tom;`Jerry;10583)
-q) d2
-firstName| `Tom
-lastName | `Jerry
-zip      | 10583
-
-q) d2[`age]:37 / add a new item
-q) d2
-firstName| `Tom
-lastName | `Jerry
-zip      | 10583
-age      | 37
+<p>Along this line of thinking, the following implementation is suggested:</p>
+<pre><code class="q">initOrder:([] time:enlist openTime;nOpenOrders:enlist 0);
+addOrder:select time:subTime,nOpenOrders:1 from simOrders;
+removeOrder:select time:exitTime,nOpenOrders:-1 from simOrders;
+orders:select time,sums nOpenOrders from `time xasc initOrder,addOrder,removeOrder;
+select time,nOpenOrders from orders where differ nOpenOrders
 </code></pre>
 
-<h3 id="uniform-value-type">Uniform Value Type<a class="headerlink" href="#uniform-value-type" title="Permanent link">&para;</a></h3>
-<ul>
-<li>The new value has the same type as the existing dictionary's value</li>
-</ul>
-<pre><code class="q">q) d3:`firstName`lastName!`Tom`Jerry
-q) d3[`state]:`NY
-q) d3
-firstName| Tom
-lastName | Jerry
-state    | NY
-</code></pre>
-
-<ul>
-<li>The new value's type is different from the type of the existing dictionary's value. In this case, we can create a
-second dictionary using the new key/value and then merge this dictionary with the existing dictionary. For example,</li>
-</ul>
-<pre><code class="q">q) d4:`firstName`lastName!`Tom`Jerry
-q) d4
-firstName| Tom
-lastName | Jerry
-
-q) d4,(enlist `age)!(enlist 37)
-firstName| `Tom
-lastName | `Jerry
-age      | 37
-</code></pre>
-
-<p>The right side of the join operator (<code>,</code>) above is a singleton dictionary. Note that both the key and the value
-of a dictionary are required to be lists, you must enlist atomic value to create a singleton dictionary.</p>
-<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
-<p>The robust approach to insert a new item into an dictionary is first create a new dictionary using the new item and
-merge this new dictionary with the existing dictionary using the <a href="https://code.kx.com/q/ref/join/">join operator</a>.</p>
+<p>The <code>where differ nOpenOrders</code> on the last line above is required to make sure the order count between two consecutive rows are different.</p>
                 
                   
                 
@@ -605,7 +513,7 @@ merge this new dictionary with the existing dictionary using the <a href="https:
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../2020.03.02/" title="2020.03.02" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2020.02.17/" title="2020.02.17" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -614,19 +522,19 @@ merge this new dictionary with the existing dictionary using the <a href="https:
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                2020.03.02
+                2020.02.17
               </span>
             </div>
           </a>
         
         
-          <a href="../2020.02.17/" title="2020.02.17" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../2020.02.03/" title="2020.02.03" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                2020.02.17
+                2020.02.03
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
