@@ -395,6 +395,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2020.01.20/" title="2020.01.20" class="md-nav__link">
+      2020.01.20
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -491,10 +503,6 @@ simTrades
 <p>To simplify the question, it is assumed that open/close auction trades are ALWAYS present. The function <code>genTrades</code> above simulates <code>10,002</code> trades. Note that each trade has up to two sale condition codes. Find the total volume between the two auction trades, inclusively.</p>
 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
 <p>We just need to find the timestamp of the two auction trades and then sum up volume of all trades between these two auction trades. This can be done like:</p>
-<pre><code class="q">select sum volume from simTrades where time within exec time from simTrades where any each saleCondition like\: &quot;*[O6]*&quot;
-</code></pre>
-
-<p>Or split the above into two lines:</p>
 <pre><code class="q">auctionTimes:exec time from simTrades where any each saleCondition like\: &quot;*[O6]*&quot;;
 select sum volume from simTrades where time within auctionTimes
 </code></pre>
@@ -539,6 +547,20 @@ select sum volume from simTrades where time within auctionTimes
             </div>
           </a>
         
+        
+          <a href="../2020.01.20/" title="2020.01.20" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                2020.01.20
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
