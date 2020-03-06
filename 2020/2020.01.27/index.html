@@ -494,7 +494,10 @@
                 
                   <h1>2020.01.27</h1>
                 
-                <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+                <p><span style="display:block;text-align:center">
+<img alt="Sale condition" src="../../assets/img/2020.01.27.jpg" />
+</span></p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>NYSE TAQ data provides <code>T+1</code> trades reported to SIP and each trade has some basic information like timestamp, price, exchange, volume and trade qualifiers. The open/close auction trade on the primary exchange is marked by qualifiers <code>0</code> and <code>6</code>, respectively. Define the daily volume as the total volume traded between the open/close auction trades on the primary, inclusively.</p>
 <pre><code class="q">genTrades:{[seed;nTrades]
     / Randomly generate each trade's timestamp
