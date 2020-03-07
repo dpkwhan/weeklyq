@@ -494,7 +494,10 @@
                 
                   <h1>2020.02.03</h1>
                 
-                <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+                <p><span style="display:block;text-align:center">
+<img alt="No order period" src="../../assets/img/2020.02.03.png" />
+</span></p>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>One frequently asked question in analyzing the behavior of a Smart Order Router (SOR) is how many time periods in which there is no open child orders on market and what are the start time and length of the no-slice period.</p>
 <p>The following function <code>genOrders</code> simulates 5,000 child orders with order submission time and the time each order exits from the limit order book. It is assumed that the trading hours is from <code>09:30</code> to <code>16:00</code> and the parent order arrives exactly at <code>09:30</code>.</p>
 <pre><code class="q">genOrders:{[nOrders;seed;openTime;closeTime]
