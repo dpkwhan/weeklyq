@@ -211,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" class="md-tabs__link md-tabs__link--active">
+        <a href="../2020.03.09/" class="md-tabs__link md-tabs__link--active">
           2020
         </a>
       
@@ -279,6 +279,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../2020.03.09/" title="2020.03.09" class="md-nav__link">
+      2020.03.09
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -313,6 +325,54 @@
         <li class="md-nav__item">
   <a href="#question" class="md-nav__link">
     Question
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-fby" class="md-nav__link">
+    Use fby
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-sublist" class="md-nav__link">
+    Use sublist
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use" class="md-nav__link">
+    Use #
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-group" class="md-nav__link">
+    Use group
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remarks" class="md-nav__link">
+    Remarks
   </a>
   
 </li>
@@ -461,6 +521,54 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#use-fby" class="md-nav__link">
+    Use fby
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-sublist" class="md-nav__link">
+    Use sublist
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use" class="md-nav__link">
+    Use #
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-group" class="md-nav__link">
+    Use group
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#remarks" class="md-nav__link">
+    Remarks
+  </a>
+  
+</li>
+      
       
       
       
@@ -516,13 +624,44 @@ simulateTrades:{[seed;nTrades]
 trades:simulateTrades[-314159;5000000]
 </code></pre>
 
-<p>Find the top <code>10</code> symbols that are most actively traded (measured by total traded shares) on each day. The returned table should have <code>220</code> rows, <em>i.e.</em> 10 rows for each day and the following schema:</p>
+<p>Find the top <code>10</code> symbols that are most actively traded (measured by total traded shares) on each day. The returned table should have <code>220</code> rows, <em>i.e.</em> <code>10</code> rows for each day and the following schema:</p>
 <pre><code class="q">topTradedSymbols:([]
   date:`date$();
   ticker:`symbol$();
   dailyVol:`long$()
 )
 </code></pre>
+
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>First we compute the daily volume from the trade tick data and sort the volume in descending order for each date. Note that <code>0!</code> is used to remove the key from the table.</p>
+<pre><code class="q">dailyVolume:`date`dailyVol xdesc 0!select dailyVol:sum volume by date,ticker from trades;
+</code></pre>
+
+<p>Below four different approaches are provided to find the top <code>10</code> most actively trades symbols.</p>
+<h3 id="use-fby">Use <code>fby</code><a class="headerlink" href="#use-fby" title="Permanent link">&para;</a></h3>
+<p>Find the first <code>10</code> indices on each day and then filter out these rows.</p>
+<pre><code class="q">select from dailyVolume where ({x in 10#x};i) fby date
+</code></pre>
+
+<h3 id="use-sublist">Use <code>sublist</code><a class="headerlink" href="#use-sublist" title="Permanent link">&para;</a></h3>
+<pre><code class="q">ungroup select sublist[10] ticker,sublist[10] dailyVol by date from dailyVolume
+</code></pre>
+
+<h3 id="use">Use <code>#</code><a class="headerlink" href="#use" title="Permanent link">&para;</a></h3>
+<p>Given <code>sublist</code> is implemented internally with take operator, using <code>#</code> directly is slightly faster than using <code>sublist</code>.</p>
+<pre><code class="q">ungroup select 10#ticker,10#dailyVol by date from dailyVolume
+</code></pre>
+
+<h3 id="use-group">Use <code>group</code><a class="headerlink" href="#use-group" title="Permanent link">&para;</a></h3>
+<pre><code class="q">select from dailyVolume where i in raze 10#/:group date
+</code></pre>
+
+<h2 id="remarks">Remarks<a class="headerlink" href="#remarks" title="Permanent link">&para;</a></h2>
+<p>The last approach using <code>group</code> is preferred due to two reasons:</p>
+<ul>
+<li>it runs fastest</li>
+<li>it is cleaner if multiple columns are present in the table</li>
+</ul>
                 
                   
                 
@@ -544,7 +683,7 @@ trades:simulateTrades[-314159;5000000]
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2020.03.09/" title="2020.03.09" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -553,7 +692,7 @@ trades:simulateTrades[-314159;5000000]
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                2020.03.09
               </span>
             </div>
           </a>
