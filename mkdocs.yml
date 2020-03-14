@@ -39,6 +39,8 @@ markdown_extensions:
   - pymdownx.tilde
   - toc:
       permalink: true
+  - markdown_include.include:
+      base_path: docs
 
 site_dir: "site"
 site_author: "David Han"
@@ -61,6 +63,7 @@ theme:
 nav:
   - Home: index.md
   - 2020:
+      - 2020/2020.03.16.md
       - 2020/2020.03.09.md
       - 2020/2020.03.02.md
       - 2020/2020.02.24.md
