@@ -501,32 +501,33 @@
 <p>Below is a simple "badly" constructed table <code>dataTbl</code>, which has a column named <code>order type</code>, noting the space between the two words.</p>
 <pre><code class="q">dataList:(
    &quot;date,sym,order type,orderQty&quot;
-  ;&quot;2020.03.09,AAPL.OQ,MID_QUOTE,80000&quot;
-  ;&quot;2020.03.09,AAPL.OQ,FAR_TOUCH,50000&quot;
-  ;&quot;2020.03.09,AAPL.OQ,NEAR_TOUCH,120000&quot;
-  ;&quot;2020.03.10,AAPL.OQ,MID_QUOTE,100000&quot;
-  ;&quot;2020.03.10,AAPL.OQ,FAR_TOUCH,70000&quot;
-  ;&quot;2020.03.10,AAPL.OQ,NEAR_TOUCH,170000&quot;
-  ;&quot;2020.03.09,IBM.N,MID_QUOTE,83000&quot;
-  ;&quot;2020.03.09,IBM.N,FAR_TOUCH,54000&quot;
-  ;&quot;2020.03.09,IBM.N,NEAR_TOUCH,129000&quot;
-  ;&quot;2020.03.10,IBM.N,MID_QUOTE,130000&quot;
-  ;&quot;2020.03.10,IBM.N,FAR_TOUCH,79000&quot;
-  ;&quot;2020.03.10,IBM.N,NEAR_TOUCH,175000&quot;
-  ;&quot;2020.03.09,BABA.N,MID_QUOTE,120000&quot;
-  ;&quot;2020.03.09,BABA.N,FAR_TOUCH,68000&quot;
-  ;&quot;2020.03.09,BABA.N,NEAR_TOUCH,930000&quot;
-  ;&quot;2020.03.10,BABA.N,MID_QUOTE,150000&quot;
-  ;&quot;2020.03.10,BABA.N,FAR_TOUCH,96000&quot;
-  ;&quot;2020.03.10,BABA.N,NEAR_TOUCH,2030000&quot;
+  ;&quot;2020.03.09,AAPL.OQ,MID QUOTE,80000&quot;
+  ;&quot;2020.03.09,AAPL.OQ,FAR TOUCH,50000&quot;
+  ;&quot;2020.03.09,AAPL.OQ,NEAR TOUCH,120000&quot;
+  ;&quot;2020.03.10,AAPL.OQ,MID QUOTE,100000&quot;
+  ;&quot;2020.03.10,AAPL.OQ,FAR TOUCH,70000&quot;
+  ;&quot;2020.03.10,AAPL.OQ,NEAR TOUCH,170000&quot;
+  ;&quot;2020.03.09,IBM.N,MID QUOTE,83000&quot;
+  ;&quot;2020.03.09,IBM.N,FAR TOUCH,54000&quot;
+  ;&quot;2020.03.09,IBM.N,NEAR TOUCH,129000&quot;
+  ;&quot;2020.03.10,IBM.N,MID QUOTE,130000&quot;
+  ;&quot;2020.03.10,IBM.N,FAR TOUCH,79000&quot;
+  ;&quot;2020.03.10,IBM.N,NEAR TOUCH,175000&quot;
+  ;&quot;2020.03.09,BABA.N,MID QUOTE,120000&quot;
+  ;&quot;2020.03.09,BABA.N,FAR TOUCH,68000&quot;
+  ;&quot;2020.03.09,BABA.N,NEAR TOUCH,930000&quot;
+  ;&quot;2020.03.10,BABA.N,MID QUOTE,150000&quot;
+  ;&quot;2020.03.10,BABA.N,FAR TOUCH,96000&quot;
+  ;&quot;2020.03.10,BABA.N,NEAR TOUCH,2030000&quot;
 );
 dataTbl:(&quot;DSSJ&quot;; enlist &quot;,&quot;) 0:dataList;
+
 </code></pre>
 
 <p>Answer the following two questions:</p>
 <ol>
 <li>Find the total order qty (<code>orderQty</code>) across all dates grouped by <code>order type</code></li>
-<li>Find the total order qty for order type <code>MID_QUOTE</code>, grouped by <code>sym</code></li>
+<li>Find the total order qty for order type <code>MID QUOTE</code>, grouped by <code>sym</code></li>
 </ol>
                 
                   
