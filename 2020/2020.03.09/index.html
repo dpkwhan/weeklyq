@@ -211,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" class="md-tabs__link md-tabs__link--active">
+        <a href="../2020.03.16/" class="md-tabs__link md-tabs__link--active">
           2020
         </a>
       
@@ -279,6 +279,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../2020.03.16/" title="2020.03.16" class="md-nav__link">
+      2020.03.16
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -314,6 +326,73 @@
   <a href="#question" class="md-nav__link">
     Question
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functional-select" class="md-nav__link">
+    Functional Select
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-1" class="md-nav__link">
+    Question 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-2" class="md-nav__link">
+    Question 2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rename-columns" class="md-nav__link">
+    Rename Columns
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-1_1" class="md-nav__link">
+    Question 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-2_1" class="md-nav__link">
+    Question 2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -473,6 +552,73 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functional-select" class="md-nav__link">
+    Functional Select
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-1" class="md-nav__link">
+    Question 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-2" class="md-nav__link">
+    Question 2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rename-columns" class="md-nav__link">
+    Rename Columns
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#question-1_1" class="md-nav__link">
+    Question 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-2_1" class="md-nav__link">
+    Question 2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -493,8 +639,9 @@
                   <h1>2020.03.09</h1>
                 
                 <p><span style="display:block;text-align:center">
-<img alt="Query" src="../../assets/img/2020.03.09.jpg" />
-</span></p>
+<img alt="Query" src="../../assets/img/2020.03.09.png" />
+</span>
+<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://1.bp.blogspot.com/-f952rtXjMBA/WGQJDvpoJRI/AAAAAAAAAHw/M44B3s5q-yo_PLQ4vRh350BqzgV5q3rbwCLcB/s1600/Database-Query-Querycount-GetqueryLocator.png">here</a></span></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>Sometimes the source data we have to deal with is given and we have no control on how the data is named, typed and stored. One example is there is a space in the table column name or a q keyword is used as the column name. In this case, querying the table becomes tricky.</p>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
@@ -521,7 +668,6 @@
   ;&quot;2020.03.10,BABA.N,NEAR TOUCH,2030000&quot;
 );
 dataTbl:(&quot;DSSJ&quot;; enlist &quot;,&quot;) 0:dataList;
-
 </code></pre>
 
 <p>Answer the following two questions:</p>
@@ -529,6 +675,50 @@ dataTbl:(&quot;DSSJ&quot;; enlist &quot;,&quot;) 0:dataList;
 <li>Find the total order qty (<code>orderQty</code>) across all dates grouped by <code>order type</code></li>
 <li>Find the total order qty for order type <code>MID QUOTE</code>, grouped by <code>sym</code></li>
 </ol>
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>When selecting from a "problematic" table with space in column name or keyword as column name, the classical <code>select ... from ...</code> template does not work. We have two ways to deal with tables like this.</p>
+<h3 id="functional-select">Functional Select<a class="headerlink" href="#functional-select" title="Permanent link">&para;</a></h3>
+<p>The basic syntax of functional select is <code>?[t;a;b;c]</code> where:</p>
+<ul>
+<li><code>t</code>: a <strong>t</strong>able or table name</li>
+<li><code>a</code>: a dictionary of <strong>a</strong>ggregates</li>
+<li><code>b</code>: a dictionary of group <strong>b</strong>y</li>
+<li><code>c</code>: a dictionary of <strong>c</strong>onstraints</li>
+</ul>
+<p>More details on functional select are <a href="https://code.kx.com/q4m3/9_Queries_q-sql/#912-functional-forms">here</a> and <a href="https://code.kx.com/q/basics/funsql/">here</a>.</p>
+<h4 id="question-1">Question 1<a class="headerlink" href="#question-1" title="Permanent link">&para;</a></h4>
+<pre><code class="q">a:();
+b:(enlist `orderType)!(enlist `$&quot;order type&quot;);
+c:(enlist `totalOrderQty)!(enlist (sum;`orderQty));
+?[dataTbl;a;b;c]
+</code></pre>
+
+<h4 id="question-2">Question 2<a class="headerlink" href="#question-2" title="Permanent link">&para;</a></h4>
+<pre><code class="q">a:(enlist (=;`$&quot;order type&quot;;enlist `$&quot;MID QUOTE&quot;));
+b:(enlist `sym)!(enlist `sym);
+c:(enlist `totalOrderQty)!(enlist (sum;`orderQty));
+?[dataTbl;a;b;c]
+</code></pre>
+
+<h3 id="rename-columns">Rename Columns<a class="headerlink" href="#rename-columns" title="Permanent link">&para;</a></h3>
+<p>We can use <code>xcol</code> to rename the column names. Also note that we need to caste the string "MID QUOTE" to a symbol since it contains a space.</p>
+<h4 id="question-1_1">Question 1<a class="headerlink" href="#question-1_1" title="Permanent link">&para;</a></h4>
+<pre><code class="q">select totalOrderQty:sum orderQty by orderType from `date`sym`orderType xcol dataTbl
+</code></pre>
+
+<h4 id="question-2_1">Question 2<a class="headerlink" href="#question-2_1" title="Permanent link">&para;</a></h4>
+<pre><code class="q">select totalOrderQty:sum orderQty by sym from (
+  `date`sym`orderType xcol dataTbl
+) where orderType=`$&quot;MID QUOTE&quot;
+</code></pre>
+
+<p>Alternatively, you can also use <a href="https://code.kx.com/q/ref/like/"><code>like</code></a> to match a string pattern:</p>
+<pre><code class="q">select totalOrderQty:sum orderQty by sym from (
+  `date`sym`orderType xcol dataTbl
+) where orderType like &quot;MID QUOTE&quot;
+</code></pre>
+
+<p>Note that using <code>like</code> is slower than the first approach. It is <code>20%</code> slower when run from my machine for 10 million times.</p>
                 
                   
                 
@@ -550,7 +740,7 @@ dataTbl:(&quot;DSSJ&quot;; enlist &quot;,&quot;) 0:dataList;
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2020.03.16/" title="2020.03.16" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -559,7 +749,7 @@ dataTbl:(&quot;DSSJ&quot;; enlist &quot;,&quot;) 0:dataList;
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                2020.03.16
               </span>
             </div>
           </a>
