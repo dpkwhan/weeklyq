@@ -13,7 +13,7 @@
         <meta name="description" content="weekly q">
       
       
-        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.03.16q/">
+        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.03.23q/">
       
       
         <meta name="author" content="David Han">
@@ -42,7 +42,7 @@
     
     
       
-        <title>2020.03.16q - weekly q</title>
+        <title>2020.03.23q - weekly q</title>
       
     
     
@@ -144,7 +144,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                2020.03.16q
+                2020.03.23q
               
             </span>
           
@@ -469,31 +469,41 @@
               
                 
                 
-                  <h1>2020.03.16q</h1>
+                  <h1>2020.03.23q</h1>
                 
                 <p><span style="display:block;text-align:center">
-<img alt="Query" src="../../assets/img/2020.03.16.png" />
+<img alt="Query" src="../../assets/img/2020.03.23.png" />
 </span>
-<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://miro.medium.com/max/678/1*6ELZ2fC4LRn7NktB_vqgWQ.png">here</a></span></p>
+<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://www.iso20022.org/market-identifier-codes">here</a></span></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>I/O operation is one of the most common features supported by all programming languages. Reading from and writing to a file in <code>q</code> is extremely powerful and flexible. Reading a standard csv is quite straightforward and is covered extensively in <code>Q For Mortals</code>. However, the files we have to read sometimes are not standard and some pre-processing is required before they are loaded into kdb.</p>
+<p>Market Identifier Code (MIC) is an international standard, which "specifies a universal method of identifying exchanges, trading platforms, regulated or non-regulated markets and trade reporting facilities as sources of prices and related information in order to facilitate automated processing" as quoted from its <a href="https://www.iso20022.org/market-identifier-codes">official site</a>.</p>
+<p>The U.S. Equities market has 13 lit exchanges and dozens of Alternative Trading Systems (ATSs), <em>a.k.a.</em> dark pools. Many buy side firms also operate their own non-ATS crossing systems.</p>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
-<p>NASDAQ publishes the listed symbols on its exchange on a daily basis. Download the text file <code>nasdaqlisted.txt</code> from <a href="ftp://ftp.nasdaqtrader.com/symboldirectory/">here</a> and save the file on your personal computer. The file you downloaded has a header and footer. For example</p>
-<p><strong>Header</strong></p>
-<p><code>Symbol|Security Name|Market Category|Test Issue|Financial Status|Round Lot Size|ETF|NextShares</code></p>
-<p><strong>Footer</strong></p>
-<p><code>File Creation Time: 0316202018:01|||||||</code></p>
-<p>Write a q script snippet to load this text file into kdb table <code>nasdaqlisted</code> with the following schema:</p>
-<pre><code class="q">q) meta nasdaqlisted
-| c              | t f a |
-|----------------|-------|
-| symbol         | s     |
-| securityName   | s     |
-| marketCategory | s     |
-| isTestIssue    | b     |
-| lotSize        | j     |
-| isETF          | b     |
+<p>There might be multiple exchanges quoting at the National Best Bid and Offer (NBBO) price level at any given time. It is assumed that child orders are always placed at NBBO and can be placed to any lit exchanges. The below function <code>simChildOrders</code> simulates some <strong>BUY</strong> orders with execution destination (<code>exDest</code>). See the definition of FIX tag for <a href="https://fiximate.fixtrading.org/en/FIX.5.0SP2_EP255/tag100.html">exDest</a>. It also has a column <code>nbbExchanges</code>, which shows the list of lit exchanges that are present at the best bid price level.</p>
+<pre><code class="q">simChildOrders:{[nOrders]
+    seed:-314159;
+    openTime:`time$09:30;
+    closeTime:`time$16:00;
+    litVenues:`XNYS`ARCX`XCHI`XASE`XCIS`XNAS`XBOS`XPHL`BATS`BATY`EDGA`EDGX`IEXG;
+
+    system &quot;S &quot;,string seed;
+    submitTimes:asc closeTime&amp;openTime+nOrders?390*60*1000;
+
+    system &quot;S &quot;,string seed;
+    exDest:nOrders?litVenues;
+
+    system &quot;S &quot;,string seed;
+    nExchanges:3+nOrders?(count litVenues)-3;
+    system &quot;S &quot;,string seed;
+    nbbVenues:{y?x}[litVenues;] each nExchanges;
+
+    ([] time:submitTimes;side:`BUY;exDest:exDest;nbbVenues:nbbVenues)
+  };
+
+childOrders:simChildOrders[5000];
 </code></pre>
+
+<p>Find the number of orders which are placed to exchanges present at NBB (National Best Bid).</p>
                 
                   
                 

@@ -211,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" class="md-tabs__link md-tabs__link--active">
+        <a href="../2020.03.23/" class="md-tabs__link md-tabs__link--active">
           2020
         </a>
       
@@ -279,6 +279,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../2020.03.23/" title="2020.03.23" class="md-nav__link">
+      2020.03.23
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -313,6 +325,13 @@
         <li class="md-nav__item">
   <a href="#question" class="md-nav__link">
     Question
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
   </a>
   
 </li>
@@ -485,6 +504,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
       
       
       
@@ -527,6 +553,22 @@
 | lotSize        | j     |
 | isETF          | b     |
 </code></pre>
+
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>The following q script snippet is proposed. On my machine, I save the file under <code>C:\data\</code>. Note that the path separator in q is forward slash (<code>/</code>) on all Operating Systems including Windows, Linux, and Mac.</p>
+<pre><code class="q">infile:hsym `$&quot;C:/data/nasdaqlisted.txt&quot;;
+nasdaqlisted:(&quot;SSSB JB &quot;;enlist &quot;|&quot;) 0:-1_read0 infile;
+`symbol`securityName`marketCategory`isTestIssue`lotSize`isETF xcol nasdaqlisted
+</code></pre>
+
+<p>Some additional details on a few keywords used in the answer:</p>
+<ul>
+<li><a href="https://code.kx.com/q/ref/hsym/"><code>hsym</code></a> is used to create a file handle from a symbol.</li>
+<li><a href="https://code.kx.com/q/ref/read0/"><code>read0</code></a> reads a text file and the last line is dropped with <a href="https://code.kx.com/q/ref/drop/"><code>-1_</code></a>.</li>
+<li><a href="https://code.kx.com/q/ref/file-text/"><code>0:</code></a> interprets a field-delimited list of strings as a matrix.</li>
+<li>Use a space to omit a field from the load if you don't want to load it.</li>
+<li>Use <a href="https://code.kx.com/q/ref/cols/#xcol"><code>xcol</code></a> to rename column name with space in it as discussed last week.</li>
+</ul>
                 
                   
                 
@@ -548,7 +590,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2020.03.23/" title="2020.03.23" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -557,7 +599,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                2020.03.23
               </span>
             </div>
           </a>
