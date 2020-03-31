@@ -13,7 +13,7 @@
         <meta name="description" content="weekly q">
       
       
-        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.01.20a/">
+        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.04.06a/">
       
       
         <meta name="author" content="David Han">
@@ -42,7 +42,7 @@
     
     
       
-        <title>2020.01.20a - weekly q</title>
+        <title>2020.04.06a - weekly q</title>
       
     
     
@@ -144,7 +144,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                2020.01.20a
+                2020.04.06a
               
             </span>
           
@@ -474,35 +474,22 @@
               
                 
                 
-                  <h1>2020.01.20a</h1>
+                  <h1>2020.04.06a</h1>
                 
                 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
-<p>The following two approaches are proposed:</p>
-<p><strong>Method 1</strong></p>
-<pre><code class="q">raze {[s]
-  f:$[s=`BUY;max;min];
-  select from orders where side=s,price=(f;price) fby ([] poid;wid)
-} each `BUY`SELL
+<p>The following code snippet is suggested. I intentionally break it into multiple lines to make the explanations easier.</p>
+<pre><code class="q">iocClusters:select time,tif,isIOC:`IOC=tif from orders;
+iocClusters:update iocGroup:sums 1_(&gt;)prior (0,isIOC) from iocClusters;
+iocClusters:update duration:last time-first time by iocGroup from iocClusters where isIOC;
+select from iocClusters where duration=max duration
 </code></pre>
 
-<p>In above implementation:</p>
+<p>Some explanations:</p>
 <ul>
-<li>Use <code>raze</code> to merge multiple conforming tables into a single table</li>
-<li>Conditional selection operator ($) is used to select which function to use based on the order side</li>
-<li>To group on multiple columns in a <code>fby</code>, tabulate them in group</li>
-</ul>
-<p><strong>Method 2</strong></p>
-<pre><code class="q">{
-  data:`poid`wid`p xasc update p:?[side=`BUY;price;-1*price] from orders;
-  data:delete p from data;
-  0!select by poid,wid from data
-}[]
-</code></pre>
-
-<p>A few notes about the second implementation:</p>
-<ul>
-<li><code>select by group from table</code> gives you the last row in a group</li>
-<li>Use <code>0!</code> on to remove key(s) of a keyed table</li>
+<li>Line 1 updates the table with a boolean flag to indicate whether an order is an <code>IOC</code> order.</li>
+<li>Line 2 creates an IOC group for each IOC cluster. The snippet <code>1_(&gt;)prior (0,isIOC)</code> flags the first IOC order in an IOC cluster. The <code>sums</code> simply creates an increasing group index for each IOC cluster.</li>
+<li>Line 3 finds the time duration of each IOC clusters</li>
+<li>Line 4 gives the IOC clusters with maximal duration.</li>
 </ul>
                 
                   
