@@ -512,7 +512,7 @@ select from iocClusters where duration=max duration
 <ul>
 <li>Line 1 updates the table with a boolean flag to indicate whether an order is an <code>IOC</code> order.</li>
 <li>Line 2 creates an IOC group for each IOC cluster. The snippet <code>1_(&gt;)prior (0,isIOC)</code> flags the first IOC order in an IOC cluster. The <code>sums</code> simply creates an increasing group index for each IOC cluster.</li>
-<li>Line 3 finds the time duration of each IOC clusters</li>
+<li>Line 3 finds the time duration of each IOC clusters.</li>
 <li>Line 4 gives the IOC clusters with maximal duration.</li>
 </ul>
                 
