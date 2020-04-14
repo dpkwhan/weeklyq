@@ -190,14 +190,16 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href="../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../.." class="md-tabs__link">
         Home
       </a>
     
@@ -209,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../2020.04.06/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link md-tabs__link--active">
           2020
         </a>
       
@@ -256,10 +258,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       2020
@@ -270,6 +274,59 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2020.04.13
+      </label>
+    
+    <a href="./" title="2020.04.13" class="md-nav__link md-nav__link--active">
+      2020.04.13
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question" class="md-nav__link">
+    Question
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
         
           
           
@@ -476,13 +533,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#answer" class="md-nav__link">
-    Answer
-  </a>
-  
-</li>
-      
       
       
       
@@ -511,21 +561,12 @@
 <pre><code class="q">35=D|22=RIC|48=MS.N|54=1|44=33.85|53=500|30=XNYS
 </code></pre>
 
-<p>might result from creating a new order sent to NYSE to buy 200 shares of Morgan Stanley at price 33.85. A good source of information on FIX message is <a href="https://fiximate.fixtrading.org/">FIXimate</a>.</p>
+<p>might result from creating a new order sent to NYSE to buy 200 shares of <code>Morgan Stanley</code> at price 33.85. A good source of information on FIX message is <a href="https://fiximate.fixtrading.org/">FIXimate</a>.</p>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
-<p>Write a function to parse FIX message. This function returns a dictionary with tag number/value as the key/value of the dictionary.</p>
+<p>Write a function <code>parseFixMsg</code> to parse FIX message. This function returns a dictionary with tag number/value as the key/value of the dictionary.</p>
 <pre><code class="q">fixMsg:&quot;35=D|22=RIC|48=MS.N|54=1|44=33.85|53=500|30=XNYS&quot;;
 parseFixMsg[fixMsg]
 </code></pre>
-
-<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
-<p>Here is the simple solution.</p>
-<pre><code class="q">fixMsg:&quot;35=D|22=RIC|48=MS.N|54=1|44=33.85|53=500|30=XNYS&quot;;
-parseFixMsg:{[msg](!).&quot;S=|&quot;0:msg};
-parseFixMsg fixMsg
-</code></pre>
-
-<p>An acute reader might notice that the dictionary values are a string. To cast the values to proper types, some further work is required. Fortunately a nice solution is provided by one of Kx Systems' white papers. For more details, read the comprehensive article on parsing FIX messages in <a href="https://code.kx.com/q/wp/fix-messaging/">Kdb+ and FIX messaging</a>.</p>
                 
                   
                 
@@ -543,6 +584,41 @@ parseFixMsg fixMsg
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../2020.04.06/" title="2020.04.06" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                2020.04.06
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

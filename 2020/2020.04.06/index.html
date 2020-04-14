@@ -211,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" class="md-tabs__link md-tabs__link--active">
+        <a href="../2020.04.13/" class="md-tabs__link md-tabs__link--active">
           2020
         </a>
       
@@ -279,6 +279,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../2020.04.13/" title="2020.04.13" class="md-nav__link">
+      2020.04.13
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -313,6 +325,13 @@
         <li class="md-nav__item">
   <a href="#question" class="md-nav__link">
     Question
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
   </a>
   
 </li>
@@ -521,6 +540,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
       
       
       
@@ -574,6 +600,21 @@ orders:simOrdersTIF[];
 </code></pre>
 
 <p>Find all clusters of <code>IOC</code> orders and the cluster with the longest duration. A cluster of <code>IOC</code> orders is defined as a group of <code>IOC</code> orders created in a row. A cluster's duration is the time difference between the first order and the last order within a cluster.</p>
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>The following code snippet is suggested. I intentionally break it into multiple lines to make the explanations easier.</p>
+<pre><code class="q">iocClusters:select time,tif,isIOC:`IOC=tif from orders;
+iocClusters:update iocGroup:sums 1_(&gt;)prior (0,isIOC) from iocClusters;
+iocClusters:update duration:last time-first time by iocGroup from iocClusters where isIOC;
+select from iocClusters where duration=max duration
+</code></pre>
+
+<p>Some explanations:</p>
+<ul>
+<li>Line 1 updates the table with a boolean flag to indicate whether an order is an <code>IOC</code> order.</li>
+<li>Line 2 creates an IOC group for each IOC cluster. The snippet <code>1_(&gt;)prior (0,isIOC)</code> flags the first IOC order in an IOC cluster. The <code>sums</code> simply creates an increasing group index for each IOC cluster.</li>
+<li>Line 3 finds the time duration of each IOC clusters</li>
+<li>Line 4 gives the IOC clusters with maximal duration.</li>
+</ul>
                 
                   
                 
@@ -595,7 +636,7 @@ orders:simOrdersTIF[];
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2020.04.13/" title="2020.04.13" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -604,7 +645,7 @@ orders:simOrdersTIF[];
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                2020.04.13
               </span>
             </div>
           </a>
