@@ -13,7 +13,7 @@
         <meta name="description" content="weekly q">
       
       
-        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.04.20q/">
+        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.04.27q/">
       
       
         <meta name="author" content="David Han">
@@ -42,7 +42,7 @@
     
     
       
-        <title>2020.04.20q - weekly q</title>
+        <title>2020.04.27q - weekly q</title>
       
     
     
@@ -144,7 +144,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                2020.04.20q
+                2020.04.27q
               
             </span>
           
@@ -517,42 +517,49 @@
               
                 
                 
-                  <h1>2020.04.20q</h1>
+                  <h1>2020.04.27q</h1>
                 
                 <p><span style="display:block;text-align:center">
-<img alt="Query" src="../../assets/img/2020.04.20.png" />
+<img alt="Query" src="../../assets/img/2020.04.27.png" />
 </span>
-<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://slingshotfutures.com/2019/01/14/what-is-limit-up-and-limit-down-www-slingshotfutures-com/">here</a></span></p>
+<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://www.siegeljewelers.com/tradedays">here</a></span></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>March 2020 is definitely unprecedented in the history of financial markets. Both market volume and volatility heightened during this <a href="https://en.wikipedia.org/wiki/2020_stock_market_crash">2020 stock market crash</a>. The market wide circuit breaker was triggered four times in 10 days (Mar 9, 12, 16 and 18) and thousands of individual stocks had circuit breaker activated. There is no respite in sight for this volatility.</p>
-<p>The Limit Up Limit Down (LULD) was designed to replace the single stock circuit breaker. A stock enters a <code>Limit State</code> if its price deviation from previous close exceeds a certain percentage, which depends on the price of the stock. For Tier 1 securities, the threshold percentage from market open auction to 3:35pm is as follows:</p>
-<table>
-<thead>
-<tr>
-<th align="left">Price Range</th>
-<th align="center">Price Band Percentage</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">strictly greater than 3.0</td>
-<td align="center">5%</td>
-</tr>
-<tr>
-<td align="left">[0.75, 3.0] inclusive on both side</td>
-<td align="center">20%</td>
-</tr>
-<tr>
-<td align="left">strictly less than 0.75</td>
-<td align="center">The lesser of $0.15 and 75%</td>
-</tr>
-</tbody>
-</table>
-<p>For more details about LULD, see <a href="https://www.nasdaqtrader.com/content/MarketRegulation/LULD_FAQ.pdf">Nasdaq LULD FAQ</a>.</p>
+<p>To gauge the effect of an event on market measures like volume and volatility, one simple way is to compare the measures before and after the event. To make a fair comparison, it makes sense to use the same number of trading days in the before and after data sample periods.</p>
+<p>One of such events is stock split or reverse split. The most common split ratios are 2-for-1, which means that the stockholder will have two for every share held earlier. Reverse stock splits are the opposite transaction, where a company divides, instead of multiplies, the number of shares that stockholders own, raising the market price accordingly. Three key pieces of information about a stock split is:</p>
+<ul>
+<li>symbol: the trading identifier of the stock</li>
+<li>date: the effective date of the split</li>
+<li>split ratio: how many new shares one existing share is converted to</li>
+</ul>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
-<p>Write a q function <code>calculateLULD</code> to calculate the LULD prices for a given list of prices. This function returns a list and each element of the list is a two-element list which has first element as the limit up price and the second element as the limit down price. For example,</p>
-<pre><code class="q">calculateLULD 0.1 0.5 3 10 / (0.175 0.025;0.65 0.35;3.6 2.4;10.5 9.5)
+<p>The function <code>getSplitEvents</code> simulates the stock split events which contain the trading identifier (<code>sym</code>), effective date (<code>date</code>) and the split ratio (<code>splitRatio</code>). The function <code>getDailyVolume</code> simulates the daily volume around the stock split effective date.</p>
+<pre><code class="q">getSplitEvents:{
+    ([]sym:`ABC`DEF;date:2020.04.08 2020.04.13;splitRatio:0.2 10)
+  };
+
+getDailyVolume:{
+    dates:2020.03.10+til 50;
+    weekdays:dates where 1&lt;dates mod 7;
+    tradingDays:weekdays except 2020.04.10;
+    nDays:count tradingDays;
+
+    seed:-314159;
+    system &quot;S &quot;,string seed;
+    volABC:([]sym:nDays#`ABC;date:tradingDays;dailyVolume:nDays?200000+nDays?300000);
+    volABC:update floor dailyVolume*0.2 from volABC where date&lt;2020.04.08;
+
+    system &quot;S &quot;,string seed;
+    volDEF:([]sym:nDays#`DEF;date:tradingDays;dailyVolume:nDays?800000+nDays?300000);
+    volDEF:update dailyVolume*10 from volDEF where date&lt;2020.04.13;
+
+    `date xasc volABC,volDEF
+  };
+
+events:getSplitEvents[];
+volume:getDailyVolume[];
 </code></pre>
+
+<p>Find the 5-day Average Daily Volume (ADV) before and after the split event.</p>
                 
                   
                 

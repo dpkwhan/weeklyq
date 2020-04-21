@@ -13,7 +13,7 @@
         <meta name="description" content="weekly q">
       
       
-        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.04.20q/">
+        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.05.04/">
       
       
         <meta name="author" content="David Han">
@@ -42,7 +42,7 @@
     
     
       
-        <title>2020.04.20q - weekly q</title>
+        <title>2020.05.04 - weekly q</title>
       
     
     
@@ -144,7 +144,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                2020.04.20q
+                2020.05.04
               
             </span>
           
@@ -500,6 +500,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
       
       
       
@@ -517,41 +524,110 @@
               
                 
                 
-                  <h1>2020.04.20q</h1>
+                  <h1>2020.05.04</h1>
                 
                 <p><span style="display:block;text-align:center">
-<img alt="Query" src="../../assets/img/2020.04.20.png" />
+<img alt="Query" src="../../assets/img/2020.05.04.png" />
 </span>
-<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://slingshotfutures.com/2019/01/14/what-is-limit-up-and-limit-down-www-slingshotfutures-com/">here</a></span></p>
+<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://www.countrysideamishfurniture.com/media/made/media/uploads/Blog/Wood_Slides_601_205_80.jpg">here</a></span></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>March 2020 is definitely unprecedented in the history of financial markets. Both market volume and volatility heightened during this <a href="https://en.wikipedia.org/wiki/2020_stock_market_crash">2020 stock market crash</a>. The market wide circuit breaker was triggered four times in 10 days (Mar 9, 12, 16 and 18) and thousands of individual stocks had circuit breaker activated. There is no respite in sight for this volatility.</p>
-<p>The Limit Up Limit Down (LULD) was designed to replace the single stock circuit breaker. A stock enters a <code>Limit State</code> if its price deviation from previous close exceeds a certain percentage, which depends on the price of the stock. For Tier 1 securities, the threshold percentage from market open auction to 3:35pm is as follows:</p>
+<p>The famous <a href="https://www.nyse.com/market-data/historical/daily-taq">NYSE TAQ</a> data provides trades and quotes on a T+1 basis. Every algorithmic trading quant in U.S. equities should be familiar with this data set. NYSE also provides data specifications and some sample data so that unsubscribed users can get a flavor of what the data offers. This data is also available to students if your school offers access to <a href="https://wrds-www.wharton.upenn.edu/documents/1301/NYSE_TAQ_PRINT.pdf">Wharton Business School Dataset</a>.</p>
+<p>Thanks to the advocate of data transparency by FINRA, more and more information about dark pools in the United States is disclosed over the last five years. Some data on ATS and non-ATS is release <a href="https://otctransparency.finra.org/otctransparency/">here</a>. FINRA releases weekly aggregated ATS and non-ATS data by symbol and venue. This provides a historical liquidity distribution among all off-market trading venues. All the off-market trades are reported to SIP (Securities Information Processor), which is the data source for NYSE TAQ. In SIP, all off-market trades are marked with exchange <code>D</code>.</p>
+<h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
+<p>From NYSE TAQ data, we can classify each off-market trade as one of the following three categories:</p>
+<ul>
+<li>AboveMidQuote</li>
+<li>AtMidQuote</li>
+<li>BelowMidQuote</li>
+</ul>
+<p>For a given stock <code>ABCD</code>, it is assumed that the distribution of volume among the three price levels are shown in table <code>proportionByPriceLevel</code>, and the volume traded on each venues are given in table <code>atsVolume</code>. For simplicity, only 3 ATS venues are included in this question.</p>
+<pre><code class="q">portions:([]
+  priceLevel:`AboveMidQuote`AtMidQuote`BelowMidQuote;
+  portion:0.2 0.5 0.3
+);
+atsVolume:([]
+  venue:`CROS`JPMX`MSPL;
+  qty:384818 130987 177100
+);
+</code></pre>
+
+<p>Let's assume the volume traded on each venue follows the same distribution dictated by <code>proportionByPriceLevel</code>. Find the volume traded at each price level for each venue. The resulting table should have three columns and 9 rows. Your output should look like this:</p>
 <table>
 <thead>
 <tr>
-<th align="left">Price Range</th>
-<th align="center">Price Band Percentage</th>
+<th align="center">venue</th>
+<th>priceLevel</th>
+<th>qtyAtPriceLevel</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">strictly greater than 3.0</td>
-<td align="center">5%</td>
+<td align="center">CROS</td>
+<td>AboveMidQuote</td>
+<td>76963.6</td>
 </tr>
 <tr>
-<td align="left">[0.75, 3.0] inclusive on both side</td>
-<td align="center">20%</td>
+<td align="center">CROS</td>
+<td>AtMidQuote</td>
+<td>192409</td>
 </tr>
 <tr>
-<td align="left">strictly less than 0.75</td>
-<td align="center">The lesser of $0.15 and 75%</td>
+<td align="center">CROS</td>
+<td>BelowMidQuote</td>
+<td>115445.4</td>
+</tr>
+<tr>
+<td align="center">JPMX</td>
+<td>AboveMidQuote</td>
+<td>26197.4</td>
+</tr>
+<tr>
+<td align="center">JPMX</td>
+<td>AtMidQuote</td>
+<td>65493.5</td>
+</tr>
+<tr>
+<td align="center">JPMX</td>
+<td>BelowMidQuote</td>
+<td>39296.1</td>
+</tr>
+<tr>
+<td align="center">MSPL</td>
+<td>AboveMidQuote</td>
+<td>35420</td>
+</tr>
+<tr>
+<td align="center">MSPL</td>
+<td>AtMidQuote</td>
+<td>88550</td>
+</tr>
+<tr>
+<td align="center">MSPL</td>
+<td>BelowMidQuote</td>
+<td>53130</td>
 </tr>
 </tbody>
 </table>
-<p>For more details about LULD, see <a href="https://www.nasdaqtrader.com/content/MarketRegulation/LULD_FAQ.pdf">Nasdaq LULD FAQ</a>.</p>
-<h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
-<p>Write a q function <code>calculateLULD</code> to calculate the LULD prices for a given list of prices. This function returns a list and each element of the list is a two-element list which has first element as the limit up price and the second element as the limit down price. For example,</p>
-<pre><code class="q">calculateLULD 0.1 0.5 3 10 / (0.175 0.025;0.65 0.35;3.6 2.4;10.5 9.5)
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>Below is the suggested answer:</p>
+<pre><code class="q">/ Find all distinct price levels as a list
+priceLevels:exec distinct priceLevel from portions;
+
+/ Update with a new column for price level.
+/ Please note that each cell value is a list by itself.
+volume:update priceLevel:count[atsVolume]#enlist priceLevels from atsVolume;
+
+/ Use ungroup to expand the table
+volume:ungroup volume;
+
+/ Join market portion for each price level with ATS volume
+volume:volume lj `priceLevel xkey portions;
+
+/ Calculate the volume at each price level for each venue
+volume:update qtyAtPriceLevel:qty*portion from volume;
+
+/ Select final columns you want to keep
+select venue,priceLevel,qtyAtPriceLevel from volume
 </code></pre>
                 
                   

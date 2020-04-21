@@ -190,14 +190,16 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href="../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../.." class="md-tabs__link">
         Home
       </a>
     
@@ -209,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../2020.04.13/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link md-tabs__link--active">
           2020
         </a>
       
@@ -256,10 +258,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       2020
@@ -270,6 +274,59 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2020.04.20
+      </label>
+    
+    <a href="./" title="2020.04.20" class="md-nav__link md-nav__link--active">
+      2020.04.20
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question" class="md-nav__link">
+    Question
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
         
           
           
@@ -488,13 +545,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#answer" class="md-nav__link">
-    Answer
-  </a>
-  
-</li>
-      
       
       
       
@@ -519,8 +569,35 @@
 </span>
 <span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://slingshotfutures.com/2019/01/14/what-is-limit-up-and-limit-down-www-slingshotfutures-com/">here</a></span></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>March 2020 is definitely unprecedented in the history of financial markets. Both market volume and volatility heightened during this <a href="https://en.wikipedia.org/wiki/2020_stock_market_crash">2020 stock market crash</a>. The market wide circuit breaker was triggered four times in 10 days (Mar 9, 12, 16 and 18) and thousands of individual stocks had circuit breaker activated. There is no respite in sight for this volatility.</p>
+<p>The Limit Up Limit Down (LULD) was designed to replace the single stock circuit breaker. A stock enters a <code>Limit State</code> if its price deviation from previous close exceeds a certain percentage, which depends on the price of the stock. For Tier 1 securities, the threshold percentage from market open auction to 3:35pm is as follows:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Price Range</th>
+<th align="center">Price Band Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">strictly greater than 3.0</td>
+<td align="center">5%</td>
+</tr>
+<tr>
+<td align="left">[0.75, 3.0] inclusive on both side</td>
+<td align="center">20%</td>
+</tr>
+<tr>
+<td align="left">strictly less than 0.75</td>
+<td align="center">The lesser of $0.15 and 75%</td>
+</tr>
+</tbody>
+</table>
+<p>For more details about LULD, see <a href="https://www.nasdaqtrader.com/content/MarketRegulation/LULD_FAQ.pdf">Nasdaq LULD FAQ</a>.</p>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
-<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>Write a q function <code>calculateLULD</code> to calculate the LULD prices for a given list of prices. This function returns a list and each element of the list is a two-element list which has first element as the limit up price and the second element as the limit down price. For example,</p>
+<pre><code class="q">calculateLULD 0.1 0.5 3 10 / (0.175 0.025;0.65 0.35;3.6 2.4;10.5 9.5)
+</code></pre>
                 
                   
                 
@@ -538,6 +615,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../2020.04.13/" title="2020.04.13" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                2020.04.13
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

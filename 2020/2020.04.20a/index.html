@@ -209,7 +209,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../2020.04.13/" class="md-tabs__link">
+        <a href="../2020.04.20/" class="md-tabs__link">
           2020
         </a>
       
@@ -270,6 +270,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2020.04.20/" title="2020.04.20" class="md-nav__link">
+      2020.04.20
+    </a>
+  </li>
+
         
           
           
@@ -501,6 +513,37 @@
                   <h1>2020.04.20a</h1>
                 
                 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>Below is one suggested implementation to calculate the limit up limit down prices for Tier 1 securities in the opening auction period and the continuous session up to 3:35pm in the U.S. equities market.</p>
+<pre><code class="q">// @author David Han
+// @kind function
+// @name .price.calculateLULD
+// @fileoverview Returns the limit up limit down price for a given list of prices.
+//
+// @params price {float[]|long[]} a numerical list of prices
+// @returns luld {float[]} a list of limit up limit down prices
+//
+// @example
+// .price.calculateLULD 0.1 0.5 3 10 / (0.175 0.025;0.65 0.35;3.6 2.4;10.5 9.5)
+//
+.price.calculateLULD:{[price]
+    if[0&gt;type price;'`$&quot;price must be a list&quot;];
+    bandPctCutoff:0.75 0.2 0.05;
+    lowerBound:0.15 0w 0w;
+    loc:0.749999 3f binr `float$price;
+    priceBand:lowerBound[loc]&amp;price*bandPctCutoff loc;
+    price+flip (priceBand;neg priceBand)
+  };
+</code></pre>
+
+<p>Some explanations:</p>
+<ul>
+<li>Line 1 throws an error if the input price is not a list</li>
+<li>Line 2 defines the list of percentage bands</li>
+<li>Line 3 defines the lower bound price of price bands</li>
+<li>Line 4 finds the percentage band bucket each price falls into</li>
+<li>Line 5 find the price bands for the given list of prices</li>
+<li>Line 6 applies the price bands to the given list of prices and returns the final limit up limit down prices</li>
+</ul>
                 
                   
                 
