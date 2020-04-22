@@ -525,7 +525,7 @@
 <span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://slingshotfutures.com/2019/01/14/what-is-limit-up-and-limit-down-www-slingshotfutures-com/">here</a></span></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>March 2020 is definitely unprecedented in the history of financial markets. Both market volume and volatility heightened during this <a href="https://en.wikipedia.org/wiki/2020_stock_market_crash">2020 stock market crash</a>. The market wide circuit breaker was triggered four times in 10 days (Mar 9, 12, 16 and 18) and thousands of individual stocks had circuit breaker activated. There is no respite in sight for this volatility.</p>
-<p>The Limit Up Limit Down (LULD) was designed to replace the single stock circuit breaker. A stock enters a <code>Limit State</code> if its price deviation from previous close exceeds a certain percentage, which depends on the price of the stock. For Tier 1 securities, the threshold percentage from market open auction to 3:35pm is as follows:</p>
+<p>The Limit Up Limit Down (LULD) was designed to replace the single stock circuit breaker. A stock enters a <em>Limit State</em> if its price deviation from previous close exceeds a certain percentage, which depends on the price of the stock. For Tier 1 securities, the threshold percentage from market open auction to 3:35pm is as follows:</p>
 <table>
 <thead>
 <tr>
@@ -550,8 +550,10 @@
 </table>
 <p>For more details about LULD, see <a href="https://www.nasdaqtrader.com/content/MarketRegulation/LULD_FAQ.pdf">Nasdaq LULD FAQ</a>.</p>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
-<p>Write a q function <code>calculateLULD</code> to calculate the LULD prices for a given list of prices. This function returns a list and each element of the list is a two-element list which has first element as the limit up price and the second element as the limit down price. For example,</p>
-<pre><code class="q">calculateLULD 0.1 0.5 3 10 / (0.175 0.025;0.65 0.35;3.6 2.4;10.5 9.5)
+<p>Write a q function <code>calculateLULD</code> to calculate the LULD prices for a single price or list of prices. This function returns a list and each element of the list is a two-element list which has first element as the limit up price and the second element as the limit down price. For example,</p>
+<pre><code class="q">calculateLULD 3            / enlist 3.6 2.4
+calculateLULD 3 10         / (3.6 2.4;10.5 9.5)
+calculateLULD 0.1 0.5 3 10 / (0.175 0.025;0.65 0.35;3.6 2.4;10.5 9.5)
 </code></pre>
                 
                   

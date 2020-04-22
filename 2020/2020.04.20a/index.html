@@ -513,37 +513,35 @@
                   <h1>2020.04.20a</h1>
                 
                 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
-<p>Below is one suggested implementation to calculate the limit up limit down prices for Tier 1 securities in the opening auction period and the continuous session up to 3:35pm in the U.S. equities market.</p>
-<pre><code class="q">// @author David Han
-// @kind function
-// @name .price.calculateLULD
-// @fileoverview Returns the limit up limit down price for a given list of prices.
-//
-// @params price {float[]|long[]} a numerical list of prices
-// @returns luld {float[]} a list of limit up limit down prices
-//
-// @example
-// .price.calculateLULD 0.1 0.5 3 10 / (0.175 0.025;0.65 0.35;3.6 2.4;10.5 9.5)
-//
-.price.calculateLULD:{[price]
-    if[0&gt;type price;'`$&quot;price must be a list&quot;];
+<p>Below is one suggested implementation to calculate the limit up limit down prices for Tier 1 securities in the opening auction period and the continuous session up to 15:35 in the U.S. equities market.</p>
+<pre><code class="q">calculateLULD:{
+    / Make sure input is a list of float
+    price:&quot;f&quot;$(),x;
+
+    / Defines the list of percentage bands
     bandPctCutoff:0.75 0.2 0.05;
+
+    / Defines the lower bound price of price bands
     lowerBound:0.15 0w 0w;
-    loc:0.749999 3f binr `float$price;
+
+    / Finds the percentage band bucket each price falls into
+    loc:0.749999 3f binr price;
+
+    / Finds the price bands for the given list of prices
     priceBand:lowerBound[loc]&amp;price*bandPctCutoff loc;
-    price+flip (priceBand;neg priceBand)
+
+    / Applies the price bands to the given list of prices
+    flip (price+priceBand;price-priceBand)
   };
 </code></pre>
 
-<p>Some explanations:</p>
-<ul>
-<li>Line 1 throws an error if the input price is not a list</li>
-<li>Line 2 defines the list of percentage bands</li>
-<li>Line 3 defines the lower bound price of price bands</li>
-<li>Line 4 finds the percentage band bucket each price falls into</li>
-<li>Line 5 find the price bands for the given list of prices</li>
-<li>Line 6 applies the price bands to the given list of prices and returns the final limit up limit down prices</li>
-</ul>
+<p>My friend <a href="https://www.linkedin.com/in/alvikabir/">Alvi Kabir</a> provides the following creative solution, which uses the fact that the sorted attribute (`s#) when applied to a dictionary makes the dictionary into a step function. See some official document <a href="https://code.kx.com/q/kb/temporal-data/#stepped-attribute">here</a>. I like a lot the way he handles the case when price is less than $0.75.</p>
+<pre><code class="q">calculateLULD:{
+    d:`s#0 .2 .75 3.0001!(.75;0n;.2;.05);
+    p:.15^x*d &quot;f&quot;$(),x;
+    flip (x+p;x-p)
+  };
+</code></pre>
                 
                   
                 
