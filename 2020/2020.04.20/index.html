@@ -211,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" class="md-tabs__link md-tabs__link--active">
+        <a href="../2020.04.27/" class="md-tabs__link md-tabs__link--active">
           2020
         </a>
       
@@ -279,6 +279,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../2020.04.27/" title="2020.04.27" class="md-nav__link">
+      2020.04.27
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -313,6 +325,13 @@
         <li class="md-nav__item">
   <a href="#question" class="md-nav__link">
     Question
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
   </a>
   
 </li>
@@ -545,6 +564,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
       
       
       
@@ -600,6 +626,38 @@
 calculateLULD 3 10         / (3.6 2.4;10.5 9.5)
 calculateLULD 0.1 0.5 3 10 / (0.175 0.025;0.65 0.35;3.6 2.4;10.5 9.5)
 </code></pre>
+
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>Below is one suggested implementation to calculate the limit up limit down prices for Tier 1 securities in the opening auction period and the continuous session up to 15:35 in the U.S. equities market.</p>
+<pre><code class="q">calculateLULD:{
+    / Makes sure input is a list of float
+    price:&quot;f&quot;$(),x;
+
+    / Defines percentage bands
+    bandPctCutoff:0.75 0.2 0.05;
+
+    / Defines the lower bound price of each price band
+    lowerBound:0.15 0w 0w;
+
+    / Finds the percentage band bucket which each price falls into
+    / Note that 0.74999 is used, instead of 0.75
+    loc:0.749999 3f binr price;
+
+    / Finds the price bands for the given list of prices
+    priceBand:lowerBound[loc]&amp;price*bandPctCutoff loc;
+
+    / Applies the price bands to the given list of prices
+    flip (price+priceBand;price-priceBand)
+  };
+</code></pre>
+
+<p>My friend <a href="https://www.linkedin.com/in/alvikabir/">Alvi Kabir</a> provides the following creative solution, which uses the fact that the sorted attribute (`s#) when applied to a dictionary makes the dictionary into a step function. See some official document <a href="https://code.kx.com/q/kb/temporal-data/#stepped-attribute">here</a>. I like a lot the way he handles the case when price is between $0.2 and $0.75.</p>
+<pre><code class="q">calculateLULD:{
+    d:`s#0 .2 .75 3.0001!(.75;0n;.2;.05);
+    p:.15^x*d &quot;f&quot;$(),x;
+    flip (x+p;x-p)
+  };
+</code></pre>
                 
                   
                 
@@ -621,7 +679,7 @@ calculateLULD 0.1 0.5 3 10 / (0.175 0.025;0.65 0.35;3.6 2.4;10.5 9.5)
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2020.04.27/" title="2020.04.27" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -630,7 +688,7 @@ calculateLULD 0.1 0.5 3 10 / (0.175 0.025;0.65 0.35;3.6 2.4;10.5 9.5)
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                2020.04.27
               </span>
             </div>
           </a>

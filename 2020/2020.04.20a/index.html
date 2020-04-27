@@ -209,7 +209,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../2020.04.20/" class="md-tabs__link">
+        <a href="../2020.04.27/" class="md-tabs__link">
           2020
         </a>
       
@@ -270,6 +270,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2020.04.27/" title="2020.04.27" class="md-nav__link">
+      2020.04.27
+    </a>
+  </li>
+
         
           
           
@@ -515,16 +527,17 @@
                 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
 <p>Below is one suggested implementation to calculate the limit up limit down prices for Tier 1 securities in the opening auction period and the continuous session up to 15:35 in the U.S. equities market.</p>
 <pre><code class="q">calculateLULD:{
-    / Make sure input is a list of float
+    / Makes sure input is a list of float
     price:&quot;f&quot;$(),x;
 
-    / Defines the list of percentage bands
+    / Defines percentage bands
     bandPctCutoff:0.75 0.2 0.05;
 
-    / Defines the lower bound price of price bands
+    / Defines the lower bound price of each price band
     lowerBound:0.15 0w 0w;
 
-    / Finds the percentage band bucket each price falls into
+    / Finds the percentage band bucket which each price falls into
+    / Note that 0.74999 is used, instead of 0.75
     loc:0.749999 3f binr price;
 
     / Finds the price bands for the given list of prices
@@ -535,7 +548,7 @@
   };
 </code></pre>
 
-<p>My friend <a href="https://www.linkedin.com/in/alvikabir/">Alvi Kabir</a> provides the following creative solution, which uses the fact that the sorted attribute (`s#) when applied to a dictionary makes the dictionary into a step function. See some official document <a href="https://code.kx.com/q/kb/temporal-data/#stepped-attribute">here</a>. I like a lot the way he handles the case when price is less than $0.75.</p>
+<p>My friend <a href="https://www.linkedin.com/in/alvikabir/">Alvi Kabir</a> provides the following creative solution, which uses the fact that the sorted attribute (`s#) when applied to a dictionary makes the dictionary into a step function. See some official document <a href="https://code.kx.com/q/kb/temporal-data/#stepped-attribute">here</a>. I like a lot the way he handles the case when price is between $0.2 and $0.75.</p>
 <pre><code class="q">calculateLULD:{
     d:`s#0 .2 .75 3.0001!(.75;0n;.2;.05);
     p:.15^x*d &quot;f&quot;$(),x;
