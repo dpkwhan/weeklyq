@@ -167,6 +167,8 @@ tbl20:([] orderId:20 20;time:"n"$09:33 09:40; effectiveTime:"n"$(09:45;09:50));
 exp20:([] orderId:enlist 20;startTime:"n"$enlist 09:50);
 if[not exp20~determineStartTime[tbl20];'`"Case 20 failed"];
 
-datatbls:raze value each `$"tbl",/: -2#'"0",'string 1+til 20;
-expected:raze value each `$"exp",/: -2#'"0",'string 1+til 20;
+/ Run all test cases combined
+nCases:20;
+datatbls:raze value each `$"tbl",/: -2#'"0",'string 1+til nCases;
+expected:raze value each `$"exp",/: -2#'"0",'string 1+til nCases;
 if[not expected~determineStartTime[datatbls];'`"Unit tests for determineStartTime failed"];
