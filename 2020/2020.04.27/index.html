@@ -211,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" class="md-tabs__link md-tabs__link--active">
+        <a href="../2020.05.04/" class="md-tabs__link md-tabs__link--active">
           2020
         </a>
       
@@ -279,6 +279,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../2020.05.04/" title="2020.05.04" class="md-nav__link">
+      2020.05.04
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -313,6 +325,13 @@
         <li class="md-nav__item">
   <a href="#question" class="md-nav__link">
     Question
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
   </a>
   
 </li>
@@ -557,6 +576,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
       
       
       
@@ -617,6 +643,34 @@ volume:getDailyVolume[];
 </code></pre>
 
 <p>Find the 5-day Average Daily Volume (ADV) before and after the split event.</p>
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>Below is the suggested answer:</p>
+<pre><code class="q">/ Find the distinct trading days and sort them in ascending order
+tradingDays:`date xasc select distinct date from volume;
+
+/ Find the start date and end date of the 10 trading days around each date
+/ Note that the end date is calculated as current date plus 4
+/ One implicit assumption is here the tradingDays table is continuous, i.e.
+/ no missing trading day in this table.
+tradingDays:update startDate:date i-5,endDate:date i+4 from tradingDays;
+
+/ Join the start/end date with the effective date of the stock split so
+/ that for each effective date, we know the stop date it need to look
+/ backward and forward.
+events:events lj `date xkey tradingDays;
+
+/ Join the target data period and effective date with volume data
+volume:volume lj `sym xkey select sym,effectiveDate:date,startDate,endDate from events;
+
+/ Keep only volume data within the target data period
+volume:select from volume where date within (startDate;endDate);
+
+/ Label each day as before or after the split effective date
+volume:update label:?[date&lt;effectiveDate;`Before;`After] from volume;
+
+/ Calculate the average volume by symbol and whether it is before or after the split
+select adv:avg dailyVolume by sym,label from volume
+</code></pre>
                 
                   
                 
@@ -638,7 +692,7 @@ volume:getDailyVolume[];
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2020.05.04/" title="2020.05.04" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -647,7 +701,7 @@ volume:getDailyVolume[];
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                2020.05.04
               </span>
             </div>
           </a>
