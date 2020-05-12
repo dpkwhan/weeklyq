@@ -209,7 +209,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../2020.05.04/" class="md-tabs__link">
+        <a href="../2020.05.11/" class="md-tabs__link">
           2020
         </a>
       
@@ -270,6 +270,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2020.05.11/" title="2020.05.11" class="md-nav__link">
+      2020.05.11
+    </a>
+  </li>
+
         
           
           
@@ -538,7 +550,16 @@
                 
                 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
 <p>Below is the suggested answer:</p>
-<pre><code class="q"></code></pre>
+<pre><code class="q">calcTwaSpread:{[tbl;st;et]
+    endPoints:([] time:&quot;t&quot;$(st;et));
+    endPoints:endPoints,'tbl asof endPoints;
+    targetTbl:`time xasc endPoints,select from tbl where time within (st;et);
+    targetTbl:update dur:next[time]-time from targetTbl;
+    exec dur wavg spreadBps from targetTbl
+  };
+</code></pre>
+
+<p>The spreads at the end points of a given time range might not readily available. In this case, the prevailing spread should be interpolated at the end times of the time range. It is worth mentioning that the effective duration of a spread is from the current time to the time of next row in the table. Once the duration of a spread is determined, <a href="https://code.kx.com/q/ref/avg/#wavg"><code>wavg</code></a> should be used to calculate the weighted average.</p>
                 
                   
                 

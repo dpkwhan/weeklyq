@@ -209,7 +209,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../2020.05.04/" class="md-tabs__link">
+        <a href="../2020.05.11/" class="md-tabs__link">
           2020
         </a>
       
@@ -270,6 +270,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2020.05.11/" title="2020.05.11" class="md-nav__link">
+      2020.05.11
+    </a>
+  </li>
+
         
           
           
@@ -548,7 +560,31 @@
 </span>
 <span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://twitter.com/TWASnews/photo">here</a></span></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>The time weighted average is a commonly used measure in electronic trading. This measure assigns a smaller weight to a sudden and short-lived changes in the analytics you are interested in so that your analytics is not dramatically influenced by outliers.</p>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
+<p>The function <code>simulateSpreadBps</code> simulates the spread from <code>09:30</code> to <code>16:00</code>, which returns a table with two columns: <code>time</code> and <code>spreadBps</code>. The time is the effective time of the corresponding spread, which is in the unit of <a href="https://www.investopedia.com/terms/b/basispoint.asp">basis point</a>.</p>
+<pre><code class="q">simulateSpreadBps:{[n]
+    maxSpreadBps:10;
+    cdf:0,sums {[n;p]n{(0,y*1-x)+x*y,0}[p]/1#1f}[maxSpreadBps-1;0.5];
+    seed:-314159;
+    mktOpenTime:&quot;t&quot;$09:30;
+    mktCloseTime:&quot;t&quot;$16:00;
+    system &quot;S &quot;,string seed;
+    spreads:1+bin[cdf;n?1f]+n?1f;
+    duration:ceiling raze 1?/:500&amp;1%0.01*abs spreads-0.5*maxSpreadBps;
+    dur:mktDur*durP:duration%mktDur:`long$mktCloseTime-mktOpenTime;
+    times:mktOpenTime+`long$sums dur%sum durP;
+    data:([]time:mktOpenTime,times;spreadBps:`float$maxSpreadBps,spreads);
+    data:update dur:next[time]-time from data;
+    data:update spreadBps:5*spreadBps from data where dur&lt;00:00:00.050;
+    select time,spreadBps from data
+  };
+spreads:simulateSpreadBps[100000];
+</code></pre>
+
+<p>Write a function <code>calcTwaSpread</code> to calculate the time weighted average spread for any given time period. The expected time weighted average spread between <code>10:31</code> and <code>14:35</code> is about <code>6.52</code> bps, instead, the simple average spread is around <code>11</code> bps.</p>
+<pre><code class="q">calcTwaSpread[spreads;10:31;14:35] / 6.52
+</code></pre>
                 
                   
                 

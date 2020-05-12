@@ -13,7 +13,7 @@
         <meta name="description" content="weekly q">
       
       
-        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.01.13a/">
+        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.05.18a/">
       
       
         <meta name="author" content="David Han">
@@ -42,7 +42,7 @@
     
     
       
-        <title>2020.01.13a - weekly q</title>
+        <title>2020.05.18a - weekly q</title>
       
     
     
@@ -144,7 +144,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                2020.01.13a
+                2020.05.18a
               
             </span>
           
@@ -546,14 +546,17 @@
               
                 
                 
-                  <h1>2020.01.13a</h1>
+                  <h1>2020.05.18a</h1>
                 
                 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
-<p>One implementation is suggested as follows. Note the use of inline assignment of variable <code>n</code> and <code>xdm</code>. For curious reader, <code>xdm</code> means "<strong>x</strong> <strong>d</strong>e<strong>m</strong>eaned".</p>
-<pre><code class="q">wsdev:{[w;x]
-    $[1&gt;=n:sum w&lt;&gt;0;:0f;sqrt (n%n-1)*w wavg xdm*xdm:x-w wavg x]
+<p>Below is the suggested answer:</p>
+<pre><code class="q">genNormalNumber:{
+    pi:acos -1;
+    $[x=2*n:x div 2;
+      raze sqrt[-2*log n?1f]*/:(sin;cos)@\:(2*pi)*n?1f;
+      -1_.z.s 1+x
+    ]
   };
-exec wsdev[notional;slippage] from perfData
 </code></pre>
                 
                   
