@@ -209,8 +209,21 @@
   
     <li class="md-tabs__item">
       
-        <a href="../2020.05.18/" class="md-tabs__link">
+        <a href="../2020.05.25/" class="md-tabs__link">
           2020
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../resources/coding.guidelines/" class="md-tabs__link">
+          Resources
         </a>
       
     </li>
@@ -270,6 +283,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2020.05.25/" title="2020.05.25" class="md-nav__link">
+      2020.05.25
+    </a>
+  </li>
+
         
           
           
@@ -516,6 +541,54 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../resources/coding.guidelines/" title="Coding Guidelines" class="md-nav__link">
+      Coding Guidelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../resources/kdb.notes/" title="Kdb/q Notes" class="md-nav__link">
+      Kdb/q Notes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -564,15 +637,18 @@
 <p>Below is the suggested answer:</p>
 <p><strong>Method 1</strong>: Use <a href="https://code.kx.com/q/ref/prd/#prd">prd</a></p>
 <pre><code class="q">factorial:{$[x&lt;0;0;prd 1+til x]};
-factorial 0
 </code></pre>
 
 <p><strong>Method 2</strong>: Use recursive function</p>
-<pre><code class="q">factorial:{$[x=0;1;x*.z.s x-1]};
+<pre><code class="q">factorial:{$[x&lt;0;0;x=0;1;x*.z.s x-1]};
 </code></pre>
 
 <p><strong>Method 3</strong>: Use <a href="https://code.kx.com/q/ref/accumulators/#over">over</a></p>
 <pre><code class="q">factorial:{$[x&lt;0;0;(*/)1+til x]};
+</code></pre>
+
+<p><strong>Method 4</strong>: Use <a href="https://code.kx.com/q/ref/do/">do</a></p>
+<pre><code class="q">factorial:{do[-1+current:result:x;result*:current-:1];$[result&lt;0;0;1|result]};
 </code></pre>
                 
                   

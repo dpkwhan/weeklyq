@@ -190,14 +190,16 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item">
     
-      <a href="../.." class="md-tabs__link md-tabs__link--active">
+      <a href="../.." class="md-tabs__link">
         Home
       </a>
     
@@ -209,8 +211,21 @@
   
     <li class="md-tabs__item">
       
-        <a href="../2020.05.18/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link md-tabs__link--active">
           2020
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../resources/coding.guidelines/" class="md-tabs__link">
+          Resources
         </a>
       
     </li>
@@ -256,10 +271,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       2020
@@ -270,6 +287,59 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2020.05.25
+      </label>
+    
+    <a href="./" title="2020.05.25" class="md-nav__link md-nav__link--active">
+      2020.05.25
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question" class="md-nav__link">
+    Question
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
         
           
           
@@ -516,6 +586,54 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Resources
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../resources/coding.guidelines/" title="Coding Guidelines" class="md-nav__link">
+      Coding Guidelines
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../resources/kdb.notes/" title="Kdb/q Notes" class="md-nav__link">
+      Kdb/q Notes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -544,13 +662,6 @@
         <li class="md-nav__item">
   <a href="#question" class="md-nav__link">
     Question
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#answer" class="md-nav__link">
-    Answer
   </a>
   
 </li>
@@ -586,21 +697,7 @@
 </div>
 <p>This is commonly seen in combinations and permutations or Taylor series.</p>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
-<p>Implement a function <code>factorial</code> to calculate the factorial of a given integer. Try your best to provide multiple implementations.</p>
-<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
-<p>Below is the suggested answer:</p>
-<p><strong>Method 1</strong>: Use <a href="https://code.kx.com/q/ref/prd/#prd">prd</a></p>
-<pre><code class="q">factorial:{$[x&lt;0;0;prd 1+til x]};
-factorial 0
-</code></pre>
-
-<p><strong>Method 2</strong>: Use recursive function</p>
-<pre><code class="q">factorial:{$[x=0;1;x*.z.s x-1]};
-</code></pre>
-
-<p><strong>Method 3</strong>: Use <a href="https://code.kx.com/q/ref/accumulators/#over">over</a></p>
-<pre><code class="q">factorial:{$[x&lt;0;0;(*/)1+til x]};
-</code></pre>
+<p>Implement a function <code>factorial</code> to calculate the factorial of a given integer. Return zero if the input integer is negative. Try your best to provide multiple implementations.</p>
                 
                   
                 
@@ -618,6 +715,41 @@ factorial 0
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../2020.05.18/" title="2020.05.18" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                2020.05.18
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
