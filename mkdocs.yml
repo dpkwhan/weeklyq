@@ -63,6 +63,7 @@ theme:
 nav:
   - Home: index.md
   - 2020:
+      - 2020/2020.05.25.md
       - 2020/2020.05.18.md
       - 2020/2020.05.11.md
       - 2020/2020.05.04.md
@@ -83,3 +84,6 @@ nav:
       - 2020/2020.01.20.md
       - 2020/2020.01.13.md
       - 2020/2020.01.06.md
+  - Resources:
+      - Coding Guidelines: resources/coding.guidelines.md
+      - Kdb/q Notes: resources/kdb.notes.md
