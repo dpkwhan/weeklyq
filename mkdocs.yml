@@ -25,14 +25,15 @@ google_analytics:
 
 # extra:
 #   social:
-#     - type: "github"
-#       link: "https://github.com/dpkwhan"
-#     - type: "linkedin"
-#       link: "https://www.linkedin.com/in/zhaohuihan/"
+#     - icon: fontawesome/brands/github
+#       link: https://dpkwhan.github.io/weeklyq/
+#     - icon: fontawesome/brands/linkedin
+#       link: https://www.linkedin.com/in/zhaohuihan/
 
 markdown_extensions:
   - admonition
   - extra
+  - footnotes
   - pymdownx.arithmatex
   - pymdownx.magiclink
   - pymdownx.mark
@@ -63,6 +64,7 @@ theme:
 nav:
   - Home: index.md
   - 2020:
+      - 2020/2020.06.01.md
       - 2020/2020.05.25.md
       - 2020/2020.05.18.md
       - 2020/2020.05.11.md
@@ -86,4 +88,5 @@ nav:
       - 2020/2020.01.06.md
   - Resources:
       - Coding Guidelines: resources/coding.guidelines.md
+      - Slippage Decomposition: resources/slippage.decomposition.md
       - Kdb/q Notes: resources/kdb.notes.md
