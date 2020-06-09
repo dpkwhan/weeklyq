@@ -731,7 +731,7 @@
 </span>
 <span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://specials-images.forbesimg.com/imageserve/5e05017a25ab5d0007cf4d34/960x0.jpg?fit=scale">here</a></span></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>One frequently conducted analysis is to evaluate the relationship between a predicting variable and the price return over a given look-ahead horizon <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span>. For example, it is assumed that the price is <span><span class="MathJax_Preview">p_t</span><script type="math/tex">p_t</script></span> at time <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> and the price at <span><span class="MathJax_Preview">t+\Delta t</span><script type="math/tex">t+\Delta t</script></span> is <span><span class="MathJax_Preview">p_{t+\Delta t}</span><script type="math/tex">p_{t+\Delta t}</script></span>. The price return over the time period <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span> is defined as
+<p>One frequently conducted analysis is to evaluate the relationship between a predicting variable (<em>e.g.</em> trade imbalance or quote imbalance) and the price return over a given look-ahead horizon <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span>. For example, it is assumed that the price is <span><span class="MathJax_Preview">p_t</span><script type="math/tex">p_t</script></span> at time <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> and the price at <span><span class="MathJax_Preview">t+\Delta t</span><script type="math/tex">t+\Delta t</script></span> is <span><span class="MathJax_Preview">p_{t+\Delta t}</span><script type="math/tex">p_{t+\Delta t}</script></span>. The price return over the time period <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span> is defined as
 $$
 r_{\Delta t} = \frac{p_{t+\Delta t} - p_t}{p_t}
 $$</p>
@@ -771,6 +771,7 @@ prices:simPrices[];
 </tr>
 </tbody>
 </table>
+<p>Your implementation should be generic enough to calculate the return for any number of horizons.</p>
                 
                   
                 
