@@ -13,7 +13,7 @@
         <meta name="description" content="weekly q">
       
       
-        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.02.03/">
+        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.06.08/">
       
       
         <meta name="author" content="David Han">
@@ -42,7 +42,7 @@
     
     
       
-        <title>2020.02.03 - weekly q</title>
+        <title>2020.06.08 - weekly q</title>
       
     
     
@@ -144,7 +144,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                2020.02.03
+                2020.06.08
               
             </span>
           
@@ -211,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../2020.06.08/" class="md-tabs__link md-tabs__link--active">
+        <a href="./" class="md-tabs__link md-tabs__link--active">
           2020
         </a>
       
@@ -292,11 +292,52 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../2020.06.08/" title="2020.06.08" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2020.06.08
+      </label>
+    
+    <a href="./" title="2020.06.08" class="md-nav__link md-nav__link--active">
       2020.06.08
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question" class="md-nav__link">
+    Question
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -508,59 +549,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        2020.02.03
-      </label>
-    
-    <a href="./" title="2020.02.03" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../2020.02.03/" title="2020.02.03" class="md-nav__link">
       2020.02.03
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
-    Introduction
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#question" class="md-nav__link">
-    Question
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#answer" class="md-nav__link">
-    Answer
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -709,13 +702,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#answer" class="md-nav__link">
-    Answer
-  </a>
-  
-</li>
-      
       
       
       
@@ -733,82 +719,53 @@
               
                 
                 
-                  <h1>2020.02.03</h1>
+                  <h1>2020.06.08</h1>
                 
                 <p><span style="display:block;text-align:center">
-<img alt="No order period" src="../../assets/img/2020.02.03.png" />
+<img alt="image" src="../../assets/img/2020.06.08.png" />
 </span>
-<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://www.ebsco.com/e/files/assets-blogs/GOBI-vs-Amazon-Blog-DESKTOP-Image.png">here</a></span></p>
+<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://specials-images.forbesimg.com/imageserve/5e05017a25ab5d0007cf4d34/960x0.jpg?fit=scale">here</a></span></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>One frequently asked question in analyzing the behavior of a Smart Order Router (SOR) is how many time periods in which there is no open child orders on market and what are the start time and length of the no-slice period.</p>
-<p>The following function <code>genOrders</code> simulates 5,000 child orders with order submission time and the time each order exits from the limit order book. It is assumed that the trading hours is from <code>09:30</code> to <code>16:00</code> and the parent order arrives exactly at <code>09:30</code>.</p>
-<pre><code class="q">genOrders:{[nOrders;seed;openTime;closeTime]
-    system &quot;S &quot;,string seed;
-    submitTimes:asc closeTime&amp;openTime+nOrders?390*60*1000;
-
-    system &quot;S &quot;,string seed;
-    exitTimes:closeTime&amp;submitTimes+nOrders?60*1000;
-
-    ([] orderId:1000+til nOrders;subT:submitTimes;exitT:exitTimes)
+<p>One frequently conducted analysis is to evaluate the relationship between a predicting variable and the price return over a given look-ahead horizon <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span>. For example, it is assumed that the price is <span><span class="MathJax_Preview">p_t</span><script type="math/tex">p_t</script></span> at time <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span> and the price at <span><span class="MathJax_Preview">t+\Delta t</span><script type="math/tex">t+\Delta t</script></span> is <span><span class="MathJax_Preview">p_{t+\Delta t}</span><script type="math/tex">p_{t+\Delta t}</script></span>. The price return over the time period <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span> is defined as
+$$
+r_{\Delta t} = \frac{p_{t+\Delta t} - p_t}{p_t}
+$$</p>
+<p>where the <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span> can vary from a few milliseconds to a few minutes, depending on the trading horizon your trading strategy is targeting.</p>
+<h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
+<p>The function <code>simPrices</code> simulate the price movement in the continuous trading session from <code>09:40</code> to <code>16:00</code>.</p>
+<pre><code class="q">simPrices:{
+  n:100000;
+  system &quot;S -314159&quot;;
+  :([]time:asc 09:30+n?&quot;n&quot;$06:30;price:20+0.01*sums?[n?1.&lt;0.5;-1;1]);
   };
-
-openTime:`time$09:30;
-closeTime:`time$16:00;
-simOrders:genOrders[5000;-314159;openTime;closeTime];
+prices:simPrices[];
 </code></pre>
 
-<h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
-<p>We want to find all the time periods when there is no open child orders on market and how long each no-order
-period lasts. The expected output is a table which should look like:</p>
+<p>For each row in the table, calculate the price return for horizon <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span>, where <span><span class="MathJax_Preview">\Delta t</span><script type="math/tex">\Delta t</script></span> is from 1 second to 5 seconds. So the resulting table has 7 columns:</p>
 <table>
 <thead>
 <tr>
-<th align="center">startTime</th>
-<th align="center">periodLength</th>
+<th>time</th>
+<th>price</th>
+<th>r1</th>
+<th>r2</th>
+<th>r3</th>
+<th>r4</th>
+<th>r5</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">09:30:00.000</td>
-<td align="center">00:00:17.080</td>
-</tr>
-<tr>
-<td align="center">10:25:57.802</td>
-<td align="center">00:00:04.595</td>
-</tr>
-<tr>
-<td align="center">10:29:43.843</td>
-<td align="center">00:00:00.676</td>
-</tr>
-<tr>
-<td align="center">11:08:07.079</td>
-<td align="center">00:00:05.682</td>
-</tr>
-<tr>
-<td align="center">12:30:43.199</td>
-<td align="center">00:00:08.152</td>
-</tr>
-<tr>
-<td align="center">15:29:06.359</td>
-<td align="center">00:00:08.213</td>
+<td>0D09:30:00.018905382</td>
+<td>20.01</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
-<p>Below is the suggested answer to this question:</p>
-<pre><code class="q">times:update maxT:maxs exitT from simOrders;
-times:update noOrderDur:subT-prev maxT from times;
-times:update noOrderDur:subT-openTime from times where null noOrderDur;
-select startTime:`time$subT-noOrderDur,periodLength:`time$noOrderDur from times where noOrderDur&gt;0
-</code></pre>
-
-<p>Some detailed explanations on the suggested solution:</p>
-<ul>
-<li>Line 1: Find the running maximum time of order exiting from market.</li>
-<li>Line 2: Take the difference between the order submission time of each child order and the previous maximum exiting time. There is at least one open order on market if this time difference is negative.</li>
-<li>Line 3: Determine the period of no orders between market open and the time the first child order is sliced out.</li>
-<li>Line 4: Select the time period when the length of no-order period is positive.</li>
-</ul>
                 
                   
                 
@@ -830,7 +787,7 @@ select startTime:`time$subT-noOrderDur,periodLength:`time$noOrderDur from times 
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../2020.02.10/" title="2020.02.10" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -839,19 +796,19 @@ select startTime:`time$subT-noOrderDur,periodLength:`time$noOrderDur from times 
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                2020.02.10
+                Home
               </span>
             </div>
           </a>
         
         
-          <a href="../2020.01.27/" title="2020.01.27" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../2020.06.01/" title="2020.06.01" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                2020.01.27
+                2020.06.01
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
