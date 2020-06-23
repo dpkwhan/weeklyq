@@ -211,7 +211,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" class="md-tabs__link md-tabs__link--active">
+        <a href="../2020.06.22/" class="md-tabs__link md-tabs__link--active">
           2020
         </a>
       
@@ -292,6 +292,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../2020.06.22/" title="2020.06.22" class="md-nav__link">
+      2020.06.22
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -330,6 +342,13 @@
         <li class="md-nav__item">
   <a href="#question" class="md-nav__link">
     Question
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
   </a>
   
 </li>
@@ -720,6 +739,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
       
       
       
@@ -773,7 +799,23 @@ TWAP_{i;\Delta t} = \sum_{j=0}^{i-1} \frac{max(t_{i-j},t_i-\Delta t)-max(t_{i-j-
 trades:simTrade[];
 </code></pre>
 
-<p>Implement a function <code>twap[trades;secs]</code> to calculate the rolling TWAP for each tick of trade price. For example, <code>twap[trades;300]</code> calculates the rolling 5-minute TWAP price for each trade in the table.</p>
+<p>Implement a function <code>calcTwap[trades;secs]</code> to calculate the rolling TWAP for each tick of trade price. For example, <code>calcTwap[trades;300]</code> calculates the rolling 5-minute TWAP price for each trade in the table.</p>
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>The suggested answer is as follows:</p>
+<pre><code class="q">calcTwap:{[data;secs]
+  w:neg[`second$(secs;0)]+\:exec time from data;
+  t:wj[w;`time;data;(
+        (select time,times:time,prices:price from data);
+        ({1_x};`times);
+        ({-1_x};`prices)
+      )];
+  t:update times:(first[w],'times) from t;
+  t:update durations:{1_deltas x} each times from t;
+  t:update twap:durations wavg' prices from t;
+  select time,price,twap from t
+  };
+calcTwap[trades;300]
+</code></pre>
                 
                   
                 
@@ -795,7 +837,7 @@ trades:simTrade[];
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../.." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2020.06.22/" title="2020.06.22" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -804,7 +846,7 @@ trades:simTrade[];
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                2020.06.22
               </span>
             </div>
           </a>

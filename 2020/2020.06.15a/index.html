@@ -209,7 +209,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../2020.06.15/" class="md-tabs__link">
+        <a href="../2020.06.22/" class="md-tabs__link">
           2020
         </a>
       
@@ -283,6 +283,18 @@
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2020.06.22/" title="2020.06.22" class="md-nav__link">
+      2020.06.22
+    </a>
+  </li>
+
         
           
           
@@ -683,6 +695,20 @@
                 
                 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
 <p>The suggested answer is as follows:</p>
+<pre><code class="q">calcTwap:{[data;secs]
+  w:neg[`second$(secs;0)]+\:exec time from data;
+  t:wj[w;`time;data;(
+        (select time,times:time,prices:price from data);
+        ({1_x};`times);
+        ({-1_x};`prices)
+      )];
+  t:update times:(first[w],'times) from t;
+  t:update durations:{1_deltas x} each times from t;
+  t:update twap:durations wavg' prices from t;
+  select time,price,twap from t
+  };
+calcTwap[trades;300]
+</code></pre>
                 
                   
                 
