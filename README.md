@@ -1,17 +1,17 @@
 # weekly q
 
-## web url
+## Site URL
 
 https://dpkwhan.github.io/weeklyq/
 
-## install packages
+## Install Packages
 
 ```sh
 pip install mkdocs mkdocs-material pygments
 pip install pymdown-extensions markdown-include
 ```
 
-## deploy
+## Deploy
 
 ```sh
 mkdocs gh-deploy
