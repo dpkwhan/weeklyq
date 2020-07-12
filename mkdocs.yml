@@ -23,12 +23,12 @@ google_analytics:
   - "UA-140259656-1"
   - "auto"
 
-# extra:
-#   social:
-#     - icon: fontawesome/brands/github
-#       link: https://dpkwhan.github.io/weeklyq/
-#     - icon: fontawesome/brands/linkedin
-#       link: https://www.linkedin.com/in/zhaohuihan/
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/dpkwhan/weeklyq
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/zhaohuihan/
 
 markdown_extensions:
   - admonition
@@ -64,6 +64,7 @@ theme:
 nav:
   - Home: index.md
   - 2020:
+      - 2020/2020.06.29.md
       - 2020/2020.06.22.md
       - 2020/2020.06.15.md
       - 2020/2020.06.08.md
