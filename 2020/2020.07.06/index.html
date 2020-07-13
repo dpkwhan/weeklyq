@@ -11,7 +11,7 @@
         <meta name="description" content="weekly q">
       
       
-        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.05.18q/">
+        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.07.06/">
       
       
         <meta name="author" content="David Han">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Random Normal Number - weekly q</title>
+        <title>2020.07.06 - weekly q</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#random-normal-number" class="md-skip">
+        <a href="#time-formatting" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Random Normal Number
+              2020.07.06
             
           </span>
         </div>
@@ -182,10 +182,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       2020
@@ -207,11 +209,67 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../2020.07.06/" title="2020.07.06" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2020.07.06
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="2020.07.06" class="md-nav__link md-nav__link--active">
       2020.07.06
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question" class="md-nav__link">
+    Question
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -637,6 +695,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -653,26 +718,48 @@
                   
                 
                 
-                <h1 id="random-normal-number">Random Normal Number<a class="headerlink" href="#random-normal-number" title="Permanent link">&para;</a></h1>
+                <h1 id="time-formatting">Time Formatting<a class="headerlink" href="#time-formatting" title="Permanent link">&para;</a></h1>
 <p><span style="display:block;text-align:center">
-<img alt="Query" src="../../assets/img/2020.05.18.png" />
+<img alt="image" src="../../assets/img/2020.07.06.png" />
 </span>
-<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://miro.medium.com/max/1400/1*IZ2II2HYKeoMrdLU5jW6Dw.png">here</a></span></p>
+<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://www.templatesell.com/blog/wp-content/uploads/2018/02/change-date-time-format-wordpress.jpg">here</a></span></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>Normal distribution is one of the most common distributions in statistics. Drawing one or multiple random numbers from a normal distribution is an often used technique in Monte Carlo simulation. Generating a random normal number is implemented in most programming languages. One algorithm used to generate a standard normal random number is <a href="https://mathworld.wolfram.com/Box-MullerTransformation.html">Box-Muller transformation</a>, which generates a pair of random numbers from a standard normal distribution.</p>
-<p><strong>Box-Muller Algorithm</strong></p>
-<div class="admonition example">
-<p class="admonition-title">Algorithm</p>
-<ol>
-<li><span><span class="MathJax_Preview">a:=\sqrt{-2 \cdot ln(U_1)}</span><script type="math/tex">a:=\sqrt{-2 \cdot ln(U_1)}</script></span></li>
-<li><span><span class="MathJax_Preview">b:=2 \pi \cdot U_2</span><script type="math/tex">b:=2 \pi \cdot U_2</script></span></li>
-<li>return [<span><span class="MathJax_Preview">a \cdot sin(b)</span><script type="math/tex">a \cdot sin(b)</script></span>, <span><span class="MathJax_Preview">a \cdot cos(b)</span><script type="math/tex">a \cdot cos(b)</script></span>]</li>
-</ol>
-<p>where <span><span class="MathJax_Preview">U_1</span><script type="math/tex">U_1</script></span> and <span><span class="MathJax_Preview">U_2</span><script type="math/tex">U_2</script></span> are two independent uniform random variables.</p>
-</div>
+<p>Time can be expressed in different formats. Below are a few examples:</p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HH:MM:SS</td>
+<td>14:24:52</td>
+<td>The time is based on a 24 hour system</td>
+</tr>
+<tr>
+<td>HH:MM:SS XM</td>
+<td>02:24:52 PM</td>
+<td>The time is based on a 12 hour system. AM or PM is given</td>
+</tr>
+</tbody>
+</table>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
-<p>Write a q function to generate a list of random numbers from a standard normal distribution.</p>
-<pre><code class="q">genNormalNumber[5] / Returns a list of 5 normal random numbers
+<p>Write a function <code>formatTime</code> to format a time into 12 hour clock format. For example,</p>
+<pre><code class="q">formatTime[01:58:57] / &quot;01:58:57 AM&quot;
+formatTime[14:34:45] / &quot;02:34:45 PM&quot;
+</code></pre>
+
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>A boolean value can be used to select from binary values.</p>
+<pre><code class="q">formatTime:{
+  cutoff:12:00:00;
+  if[x=cutoff;:&quot;12:00:00 PM&quot;];
+  i:x&gt;cutoff;
+  string[x-cutoff*i],&quot; &quot;,&quot;AP&quot;[i],&quot;M&quot;
+  };
 </code></pre>
                 
               
@@ -688,6 +775,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../.." title="Home" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../2020.06.29/" title="2020.06.29" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                2020.06.29
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
