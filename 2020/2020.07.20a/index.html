@@ -11,7 +11,7 @@
         <meta name="description" content="weekly q">
       
       
-        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.03.23a/">
+        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.07.20a/">
       
       
         <meta name="author" content="David Han">
@@ -21,7 +21,7 @@
     
     
       
-        <title>2020.03.23a - weekly q</title>
+        <title>2020.07.20a - weekly q</title>
       
     
     
@@ -99,7 +99,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              2020.03.23a
+              2020.07.20a
             
           </span>
         </div>
@@ -650,40 +650,6 @@
     Answer
   </a>
   
-    <nav class="md-nav" aria-label="Answer">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#use-each-both" class="md-nav__link">
-    Use each both
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-where-and-any" class="md-nav__link">
-    Use where and any
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-list-argument" class="md-nav__link">
-    Use list argument
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#use-operator-apply" class="md-nav__link">
-    Use operator apply .
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -702,31 +668,9 @@
                   
                 
                 
-                  <h1>2020.03.23a</h1>
+                  <h1>2020.07.20a</h1>
                 
                 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
-<h3 id="use-each-both">Use each both<a class="headerlink" href="#use-each-both" title="Permanent link">&para;</a></h3>
-<p>Learn more about <code>each</code> or <code>each both</code> <a href="https://code.kx.com/q/ref/maps/#each">here</a>.</p>
-<pre><code class="q">exec sum in'[exDest;nbbVenues] from childOrders
-</code></pre>
-
-<p>Each applied to a binary value is also called each both and the infix form can be used.</p>
-<pre><code class="q">exec sum exDest in' nbbVenues from childOrders
-</code></pre>
-
-<h3 id="use-where-and-any">Use <code>where</code> and <code>any</code><a class="headerlink" href="#use-where-and-any" title="Permanent link">&para;</a></h3>
-<pre><code class="q">exec count i from childOrders where any each exDest=nbbVenues
-</code></pre>
-
-<h3 id="use-list-argument">Use list argument<a class="headerlink" href="#use-list-argument" title="Permanent link">&para;</a></h3>
-<p>Note that the anonymous function is unary and the parameter is a list.</p>
-<pre><code class="q">exec sum {x[0] in x[1]} each flip (exDest;nbbVenues) from childOrders
-</code></pre>
-
-<h3 id="use-operator-apply">Use operator apply <code>.</code><a class="headerlink" href="#use-operator-apply" title="Permanent link">&para;</a></h3>
-<p>The operator apply <code>.</code> applies a function to a list and use the individual list elements as the arguments to the function. This is very much similar to <code>*</code> operator to unpack argument list to function call in <a href="https://docs.python.org/3.9/tutorial/controlflow.html#unpacking-argument-lists">Python</a> and the spread operator <code>...</code> in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">JavaScript</a>.</p>
-<pre><code class="q">exec sum ({x in y}.) each flip (exDest;nbbVenues) from childOrders
-</code></pre>
                 
               
               

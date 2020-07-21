@@ -209,6 +209,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../2020.07.20/" title="2020.07.20" class="md-nav__link">
+      2020.07.20
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../2020.07.13/" title="2020.07.13" class="md-nav__link">
       2020.07.13
     </a>
@@ -659,6 +671,12 @@
                   <h1>2020.07.13a</h1>
                 
                 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>The moving sum function <a href="https://code.kx.com/q/ref/sum/#msum"><code>msum[x;y]</code></a> calculates the <code>x</code>-item moving sum of the list <code>y</code>, with nulls replaced by zero. The rolling <em>n</em>-tick VWAP is simply the ratio of <em>n</em>-tick moving sum of notional divided by the corresponding moving sum of shares traded.</p>
+<pre><code class="q">rollingVwap:{[trades;n]
+  update nTickVwap:msum[n;price*volume]%msum[n;volume] by sym from trades
+  };
+rollingVwap[trades;10]
+</code></pre>
                 
               
               
