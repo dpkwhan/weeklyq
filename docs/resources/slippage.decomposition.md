@@ -4,11 +4,50 @@
 An order's execution slippage is defined as:
 
 $$
-slippage_{bps} = orderSign \times \frac{Price_{benchmark}-Price_{execution}}{Price_{benchmark}} \times 10000
+slippage_{bps} = sideSign \times \frac{MarketAvgPrice-OrderAvgPrice}{MarketAvgPrice} \times 10000
 $$
 
 where
-$$orderSign = $$
+
+$$
+sideSign = 
+\begin{cases} 1, & \text{for buy order}, \\
+              -1, & \text{otherwise}
+\end{cases}
+$$
+
+Let's split the whole order duration into $N$ equal time periods and introduce the following notations:
+
+- $P_{m,i}$: the market average price in period $i$
+- $V_{m,i}$: the market volume traded in period $i$
+- $P_{o,i}$: the order average execution price in period $i$
+- $V_{o,i}$: the order quantity executed in period $i$
+
+With above notation, we have
+
+$$
+MarketAvgPrice = \frac{\sum_{i=1}^{N} P_{m,i} \cdot V_{m,i}}{\sum_{i=1}^{N} V_{m,i}} = \sum_{i=1}^{N} P_{m,i} \cdot \frac{V_{m,i}}{\sum_{i=1}^{N} V_{m,i}} = \sum_{i=1}^{N} P_{m,i} \cdot \rho_{m,i}
+$$
+
+where $\rho_{m,i} = \frac{V_{m,i}}{\sum_{i=1}^{N} V_{m,i}}$, *i.e.* the proportion of market volume traded in period $i$. By the same token, we have
+
+$$
+OrderAvgPrice = \frac{\sum_{i=1}^{N} P_{o,i} \cdot V_{o,i}}{\sum_{i=1}^{N} V_{o,i}} = \sum_{i=1}^{N} P_{o,i} \cdot \frac{V_{o,i}}{\sum_{i=1}^{N} V_{o,i}} = \sum_{i=1}^{N} P_{o,i} \cdot \rho_{o,i}
+$$
+
+where $\rho_{o,i} = \frac{V_{o,i}}{\sum_{i=1}^{N} V_{o,i}}$, *i.e.* the proportion of order quantity traded in period $i$.
+
+Let's introduce one more notation for the predicted volume profile $\hat{\rho}_{o,i}$. So we can rewrite the numerator of the slippage definition as:
+
+$$
+\sum_{i=1}^{N} P_{m,i} \cdot \rho_{m,i} - \sum_{i=1}^{N} P_{o,i} \cdot \rho_{o,i} = \sum_{i=1}^{N} (P_{m,i} - P_{o,i}) \cdot \rho_{m,i} + \sum_{i=1}^{N} P_{o,i} \cdot (\rho_{m,i} - \hat{\rho}_{o,i}) + \sum_{i=1}^{N} P_{o,i} \cdot (\hat{\rho}_{o,i} - \rho_{o,i})
+$$
+
+In this way, the performance slippage is decomposed into three components:
+
+- $\sum_{i=1}^{N} (P_{m,i} - P_{o,i}) \cdot \rho_{m,i}$ is the price component, which indicates how much an order's execution price deviates from market price, *i.e.* how much spread is captured by the order.
+- $\sum_{i=1}^{N} P_{o,i} \cdot (\rho_{m,i} - \hat{\rho}_{o,i})$ is the tolerance component, which indicates the cost paid due to how closely the order follows the target volume profile.
+- $\sum_{i=1}^{N} P_{o,i} \cdot (\hat{\rho}_{o,i} - \rho_{o,i})$ is the profile component, which indicates the slippage due to difference between the estimated volume profile and realized volume profile from the market.
 
 ## Implementation
 
