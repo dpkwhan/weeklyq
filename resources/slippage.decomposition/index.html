@@ -785,14 +785,68 @@
 <p>An order's execution slippage is defined as:</p>
 <div>
 <div class="MathJax_Preview">
-slippage_{bps} = orderSign \times \frac{Price_{benchmark}-Price_{execution}}{Price_{benchmark}} \times 10000
+slippage_{bps} = sideSign \times \frac{MarketAvgPrice-OrderAvgPrice}{MarketAvgPrice} \times 10000
 </div>
 <script type="math/tex; mode=display">
-slippage_{bps} = orderSign \times \frac{Price_{benchmark}-Price_{execution}}{Price_{benchmark}} \times 10000
+slippage_{bps} = sideSign \times \frac{MarketAvgPrice-OrderAvgPrice}{MarketAvgPrice} \times 10000
 </script>
 </div>
-<p>where
-$$orderSign = $$</p>
+<p>where</p>
+<div>
+<div class="MathJax_Preview">
+sideSign = 
+\begin{cases} 1, &amp; \text{for buy order}, \\
+              -1, &amp; \text{otherwise}
+\end{cases}
+</div>
+<script type="math/tex; mode=display">
+sideSign = 
+\begin{cases} 1, & \text{for buy order}, \\
+              -1, & \text{otherwise}
+\end{cases}
+</script>
+</div>
+<p>Let's split the whole order duration into <span><span class="MathJax_Preview">N</span><script type="math/tex">N</script></span> equal time periods and introduce the following notations:</p>
+<ul>
+<li><span><span class="MathJax_Preview">P_{m,i}</span><script type="math/tex">P_{m,i}</script></span>: the market average price in period <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></li>
+<li><span><span class="MathJax_Preview">V_{m,i}</span><script type="math/tex">V_{m,i}</script></span>: the market volume traded in period <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></li>
+<li><span><span class="MathJax_Preview">P_{o,i}</span><script type="math/tex">P_{o,i}</script></span>: the order average execution price in period <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></li>
+<li><span><span class="MathJax_Preview">V_{o,i}</span><script type="math/tex">V_{o,i}</script></span>: the order quantity executed in period <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span></li>
+</ul>
+<p>With above notation, we have</p>
+<div>
+<div class="MathJax_Preview">
+MarketAvgPrice = \frac{\sum_{i=1}^{N} P_{m,i} \cdot V_{m,i}}{\sum_{i=1}^{N} V_{m,i}} = \sum_{i=1}^{N} P_{m,i} \cdot \frac{V_{m,i}}{\sum_{i=1}^{N} V_{m,i}} = \sum_{i=1}^{N} P_{m,i} \cdot \rho_{m,i}
+</div>
+<script type="math/tex; mode=display">
+MarketAvgPrice = \frac{\sum_{i=1}^{N} P_{m,i} \cdot V_{m,i}}{\sum_{i=1}^{N} V_{m,i}} = \sum_{i=1}^{N} P_{m,i} \cdot \frac{V_{m,i}}{\sum_{i=1}^{N} V_{m,i}} = \sum_{i=1}^{N} P_{m,i} \cdot \rho_{m,i}
+</script>
+</div>
+<p>where <span><span class="MathJax_Preview">\rho_{m,i} = \frac{V_{m,i}}{\sum_{i=1}^{N} V_{m,i}}</span><script type="math/tex">\rho_{m,i} = \frac{V_{m,i}}{\sum_{i=1}^{N} V_{m,i}}</script></span>, <em>i.e.</em> the proportion of market volume traded in period <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>. By the same token, we have</p>
+<div>
+<div class="MathJax_Preview">
+OrderAvgPrice = \frac{\sum_{i=1}^{N} P_{o,i} \cdot V_{o,i}}{\sum_{i=1}^{N} V_{o,i}} = \sum_{i=1}^{N} P_{o,i} \cdot \frac{V_{o,i}}{\sum_{i=1}^{N} V_{o,i}} = \sum_{i=1}^{N} P_{o,i} \cdot \rho_{o,i}
+</div>
+<script type="math/tex; mode=display">
+OrderAvgPrice = \frac{\sum_{i=1}^{N} P_{o,i} \cdot V_{o,i}}{\sum_{i=1}^{N} V_{o,i}} = \sum_{i=1}^{N} P_{o,i} \cdot \frac{V_{o,i}}{\sum_{i=1}^{N} V_{o,i}} = \sum_{i=1}^{N} P_{o,i} \cdot \rho_{o,i}
+</script>
+</div>
+<p>where <span><span class="MathJax_Preview">\rho_{o,i} = \frac{V_{o,i}}{\sum_{i=1}^{N} V_{o,i}}</span><script type="math/tex">\rho_{o,i} = \frac{V_{o,i}}{\sum_{i=1}^{N} V_{o,i}}</script></span>, <em>i.e.</em> the proportion of order quantity traded in period <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>.</p>
+<p>Let's introduce one more notation for the predicted volume profile <span><span class="MathJax_Preview">\hat{\rho}_{o,i}</span><script type="math/tex">\hat{\rho}_{o,i}</script></span>. So we can rewrite the numerator of the slippage definition as:</p>
+<div>
+<div class="MathJax_Preview">
+\sum_{i=1}^{N} P_{m,i} \cdot \rho_{m,i} - \sum_{i=1}^{N} P_{o,i} \cdot \rho_{o,i} = \sum_{i=1}^{N} (P_{m,i} - P_{o,i}) \cdot \rho_{m,i} + \sum_{i=1}^{N} P_{o,i} \cdot (\rho_{m,i} - \hat{\rho}_{o,i}) + \sum_{i=1}^{N} P_{o,i} \cdot (\hat{\rho}_{o,i} - \rho_{o,i})
+</div>
+<script type="math/tex; mode=display">
+\sum_{i=1}^{N} P_{m,i} \cdot \rho_{m,i} - \sum_{i=1}^{N} P_{o,i} \cdot \rho_{o,i} = \sum_{i=1}^{N} (P_{m,i} - P_{o,i}) \cdot \rho_{m,i} + \sum_{i=1}^{N} P_{o,i} \cdot (\rho_{m,i} - \hat{\rho}_{o,i}) + \sum_{i=1}^{N} P_{o,i} \cdot (\hat{\rho}_{o,i} - \rho_{o,i})
+</script>
+</div>
+<p>In this way, the performance slippage is decomposed into three components:</p>
+<ul>
+<li><span><span class="MathJax_Preview">\sum_{i=1}^{N} (P_{m,i} - P_{o,i}) \cdot \rho_{m,i}</span><script type="math/tex">\sum_{i=1}^{N} (P_{m,i} - P_{o,i}) \cdot \rho_{m,i}</script></span> is the price component, which indicates how much an order's execution price deviates from market price, <em>i.e.</em> how much spread is captured by the order.</li>
+<li><span><span class="MathJax_Preview">\sum_{i=1}^{N} P_{o,i} \cdot (\rho_{m,i} - \hat{\rho}_{o,i})</span><script type="math/tex">\sum_{i=1}^{N} P_{o,i} \cdot (\rho_{m,i} - \hat{\rho}_{o,i})</script></span> is the tolerance component, which indicates the cost paid due to how closely the order follows the target volume profile.</li>
+<li><span><span class="MathJax_Preview">\sum_{i=1}^{N} P_{o,i} \cdot (\hat{\rho}_{o,i} - \rho_{o,i})</span><script type="math/tex">\sum_{i=1}^{N} P_{o,i} \cdot (\hat{\rho}_{o,i} - \rho_{o,i})</script></span> is the profile component, which indicates the slippage due to difference between the estimated volume profile and realized volume profile from the market.</li>
+</ul>
 <h2 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h2>
 <h3 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
 <pre><code class="q">decomposeSlippage[executions;trades;profile;params]
