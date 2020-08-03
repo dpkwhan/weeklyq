@@ -749,10 +749,18 @@
 <p>The order book quote imbalance is one of fundamental signals used to predict short-term price movement. The instantaneous quote imbalance can be calculated from the limit order book snapshot at any given time <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span>. One of the definition can be:</p>
 <div>
 <div class="MathJax_Preview">
-quoteImbl = \frac{\sum_{i=1}^n \frac{bidSize_i}{midQuotePrice - bidPrice_i} - \sum_{i=1}^n \frac{askSize_i}{askPrice_i - midQuotePrice}}{\sum_{i=1}^n \frac{bidSize_i}{midQuotePrice - bidPrice_i} + \sum_{i=1}^n \frac{askSize_i}{askPrice_i - midQuotePrice}},
+\begin{alignedat}{3}
+weightedBidSize &amp;= \frac{\sum_{i=1}^n \frac{bidSize_i}{midQuotePrice - bidPrice_i}}{\sum_{i=1}^n \frac{1}{midQuotePrice - bidPrice_i}} \\
+weightedAskSize &amp;= \frac{\sum_{i=1}^n \frac{askSize_i}{midQuotePrice - askPrice_i}}{\sum_{i=1}^n \frac{1}{midQuotePrice - askPrice_i}} \\
+quoteImbl &amp;= \frac{weightedBidSize - weightedAskSize}{weightedBidSize + weightedAskSize}
+\end{alignedat}
 </div>
 <script type="math/tex; mode=display">
-quoteImbl = \frac{\sum_{i=1}^n \frac{bidSize_i}{midQuotePrice - bidPrice_i} - \sum_{i=1}^n \frac{askSize_i}{askPrice_i - midQuotePrice}}{\sum_{i=1}^n \frac{bidSize_i}{midQuotePrice - bidPrice_i} + \sum_{i=1}^n \frac{askSize_i}{askPrice_i - midQuotePrice}},
+\begin{alignedat}{3}
+weightedBidSize &= \frac{\sum_{i=1}^n \frac{bidSize_i}{midQuotePrice - bidPrice_i}}{\sum_{i=1}^n \frac{1}{midQuotePrice - bidPrice_i}} \\
+weightedAskSize &= \frac{\sum_{i=1}^n \frac{askSize_i}{midQuotePrice - askPrice_i}}{\sum_{i=1}^n \frac{1}{midQuotePrice - askPrice_i}} \\
+quoteImbl &= \frac{weightedBidSize - weightedAskSize}{weightedBidSize + weightedAskSize}
+\end{alignedat}
 </script>
 </div>
 <p>where <span><span class="MathJax_Preview">midQuotePrice=\frac{bidPrice_1 + askPrice_1}{2}</span><script type="math/tex">midQuotePrice=\frac{bidPrice_1 + askPrice_1}{2}</script></span>, <span><span class="MathJax_Preview">bidPrice_i</span><script type="math/tex">bidPrice_i</script></span> and <span><span class="MathJax_Preview">bidSize_i</span><script type="math/tex">bidSize_i</script></span> are the <span><span class="MathJax_Preview">i^{th}</span><script type="math/tex">i^{th}</script></span>-level price and size on the bid side and <span><span class="MathJax_Preview">askPrice_i</span><script type="math/tex">askPrice_i</script></span> and <span><span class="MathJax_Preview">askSize_i</span><script type="math/tex">askSize_i</script></span> are the <span><span class="MathJax_Preview">i^{th}</span><script type="math/tex">i^{th}</script></span>-level price and size on the ask side. The above definition uses the reciprocal of the distance from each price level to the mid-quote as the weight and calculates a weighted average of book presure on bid and ask side.</p>
