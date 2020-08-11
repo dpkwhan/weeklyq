@@ -209,6 +209,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../2020.08.10/" title="2020.08.10" class="md-nav__link">
+      2020.08.10
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../2020.08.03/" title="2020.08.03" class="md-nav__link">
       2020.08.03
     </a>
@@ -731,11 +743,11 @@ k = \left\lceil log_2n \right\rceil + 1
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
 <p>First, let's generate some random numbers:</p>
 <pre><code class="q">genNormalNumber:{
-    pi:acos -1;
-    $[x=2*n:x div 2;
-      raze sqrt[-2*log n?1f]*/:(sin;cos)@\:(2*pi)*n?1f;
-      -1_.z.s 1+x
-    ]
+  pi:acos -1;
+  $[x=2*n:x div 2;
+    raze sqrt[-2*log n?1f]*/:(sin;cos)@\:(2*pi)*n?1f;
+    -1_.z.s 1+x
+  ]
   };
 data:asc genNormalNumber[10000];
 </code></pre>
