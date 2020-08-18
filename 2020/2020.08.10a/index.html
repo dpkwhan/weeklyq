@@ -209,6 +209,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../2020.08.17/" title="2020.08.17" class="md-nav__link">
+      2020.08.17
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../2020.08.10/" title="2020.08.10" class="md-nav__link">
       2020.08.10
     </a>
@@ -708,7 +720,57 @@
                 
                 <h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
 <p>The suggested answer is as follows.</p>
-<pre><code class="q">
+<pre><code class="q">summaryStats:{
+  stats:([] statsName:&quot;s&quot;$();statsValue:&quot;f&quot;$());
+
+  n:count x;
+  stats:stats,`statsName`statsValue!(`Count;n);
+
+  mu:sum[x]%n;
+  stats:stats,`statsName`statsValue!(`Mean;mu);
+
+  variance:sum[dm*dm:x-mu]%n-1; / or s*s:sdev x
+  stats:stats,`statsName`statsValue!(`$&quot;Sample Variance&quot;;variance);
+
+  sd:sqrt variance;
+  stats:stats,`statsName`statsValue!(`$&quot;Standard Deviation&quot;;sd);
+
+  se:sd%sqrt n;
+  stats:stats,`statsName`statsValue!(`$&quot;Standard Error&quot;;se);
+
+  xo:asc x;
+  median1:med x;
+  median:0.5*xo[-1+floor 0.5*n+1]+xo[-1+ceiling 0.5*n+1];
+  stats:stats,`statsName`statsValue!(`$&quot;Median1&quot;;median1);
+  stats:stats,`statsName`statsValue!(`$&quot;Median&quot;;median);
+
+  mode:where max[c]=c:count each group x;
+  stats:stats,`statsName`statsValue!(`$&quot;Mode&quot;;mode);
+
+  dm:x-mu;
+  v1:sum[dm xexp 4]%n;
+  v2:variance*variance;
+  kurtosis:-3+v1%v2;
+  stats:stats,`statsName`statsValue!(`$&quot;Kurtosis&quot;;kurtosis);
+
+  v1:sum[dm xexp 3]%n;
+  v2:variance xexp 1.5;
+  skewness:sqrt[n%n-1]*v1%v2;
+  stats:stats,`statsName`statsValue!(`$&quot;Skewness&quot;;skewness);
+
+  minimum:first xo;
+  stats:stats,`statsName`statsValue!(`$&quot;Minimum&quot;;minimum);
+
+  maximum:last xo;
+  stats:stats,`statsName`statsValue!(`$&quot;Maximum&quot;;maximum);
+
+  range:maximum-minimum;
+  stats:stats,`statsName`statsValue!(`$&quot;Range&quot;;range);
+
+  stats
+  };
+
+summaryStats[data]
 </code></pre>
                 
               

@@ -209,6 +209,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../2020.08.17/" title="2020.08.17" class="md-nav__link">
+      2020.08.17
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -255,6 +267,13 @@
         <li class="md-nav__item">
   <a href="#question" class="md-nav__link">
     Question
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
   </a>
   
 </li>
@@ -748,6 +767,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -785,7 +811,7 @@ $$
 x_{med} = \frac{1}{2}( x_{\left\lfloor \frac{N+1}{2} \right\rfloor}^{o} + x_{\left\lceil \frac{N+1}{2} \right\rceil}^{o} )
 $$
 where <span><span class="MathJax_Preview">\lfloor \cdot \rfloor</span><script type="math/tex">\lfloor \cdot \rfloor</script></span> and <span><span class="MathJax_Preview">\lceil \cdot \rceil</span><script type="math/tex">\lceil \cdot \rceil</script></span> denote the floor and ceiling functions, respectively.</li>
-<li>Mode: the most frequent value in the list</li>
+<li>Mode: the most frequent value(s) in the list</li>
 <li>Standard Deviation
 $$
 s = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (x-\bar{x})^2}
@@ -862,15 +888,60 @@ data:10000?til 5000;
 </tr>
 </tbody>
 </table>
-<!-- ## Answer
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>The suggested answer is as follows.</p>
+<pre><code class="q">summaryStats:{
+  stats:([] statsName:&quot;s&quot;$();statsValue:&quot;f&quot;$());
 
-The suggested answer is as follows.
+  n:count x;
+  stats:stats,`statsName`statsValue!(`Count;n);
 
+  mu:sum[x]%n;
+  stats:stats,`statsName`statsValue!(`Mean;mu);
 
-<pre><code class="q">
+  variance:sum[dm*dm:x-mu]%n-1; / or s*s:sdev x
+  stats:stats,`statsName`statsValue!(`$&quot;Sample Variance&quot;;variance);
+
+  sd:sqrt variance;
+  stats:stats,`statsName`statsValue!(`$&quot;Standard Deviation&quot;;sd);
+
+  se:sd%sqrt n;
+  stats:stats,`statsName`statsValue!(`$&quot;Standard Error&quot;;se);
+
+  xo:asc x;
+  median1:med x;
+  median:0.5*xo[-1+floor 0.5*n+1]+xo[-1+ceiling 0.5*n+1];
+  stats:stats,`statsName`statsValue!(`$&quot;Median1&quot;;median1);
+  stats:stats,`statsName`statsValue!(`$&quot;Median&quot;;median);
+
+  mode:where max[c]=c:count each group x;
+  stats:stats,`statsName`statsValue!(`$&quot;Mode&quot;;mode);
+
+  dm:x-mu;
+  v1:sum[dm xexp 4]%n;
+  v2:variance*variance;
+  kurtosis:-3+v1%v2;
+  stats:stats,`statsName`statsValue!(`$&quot;Kurtosis&quot;;kurtosis);
+
+  v1:sum[dm xexp 3]%n;
+  v2:variance xexp 1.5;
+  skewness:sqrt[n%n-1]*v1%v2;
+  stats:stats,`statsName`statsValue!(`$&quot;Skewness&quot;;skewness);
+
+  minimum:first xo;
+  stats:stats,`statsName`statsValue!(`$&quot;Minimum&quot;;minimum);
+
+  maximum:last xo;
+  stats:stats,`statsName`statsValue!(`$&quot;Maximum&quot;;maximum);
+
+  range:maximum-minimum;
+  stats:stats,`statsName`statsValue!(`$&quot;Range&quot;;range);
+
+  stats
+  };
+
+summaryStats[data]
 </code></pre>
-
- -->
                 
               
               
@@ -889,7 +960,7 @@ The suggested answer is as follows.
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../.." title="Home" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2020.08.17/" title="2020.08.17" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -898,7 +969,7 @@ The suggested answer is as follows.
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                2020.08.17
               </div>
             </div>
           </a>
