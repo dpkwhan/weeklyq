@@ -209,6 +209,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../2020.08.31/" title="2020.08.31" class="md-nav__link">
+      2020.08.31
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -255,6 +267,13 @@
         <li class="md-nav__item">
   <a href="#question" class="md-nav__link">
     Question
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
   </a>
   
 </li>
@@ -772,6 +791,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -816,7 +842,15 @@ t2:([] c3:rand each 10#3.14f;c4:10?`3);
 0D08:29:24.138744771 849 0.08825518 oji
 </code></pre>
 
-<!--  -->
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p>Two approaches are suggested:</p>
+<p><strong>Method 1:</strong> Use the <a href="https://code.kx.com/q/ref/fill/">fill operator</a> (<code>^</code>). The typical use case is to replace nulls with non-null values. It can also join tables side by side.</p>
+<pre><code class="q">t1^t2
+</code></pre>
+
+<p><strong>Method 2:</strong> Use <a href="https://code.kx.com/q/ref/join/">join operator</a> (<code>,</code>). It can join atoms, lists, dictionaries and tables. When used together with <a href="https://code.kx.com/q/ref/maps/#each">each</a> (<code>'</code>), it can join tables column-wise.</p>
+<pre><code class="q">t1,'t2
+</code></pre>
                 
               
               
@@ -835,7 +869,7 @@ t2:([] c3:rand each 10#3.14f;c4:10?`3);
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../.." title="Home" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2020.08.31/" title="2020.08.31" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -844,7 +878,7 @@ t2:([] c3:rand each 10#3.14f;c4:10?`3);
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Home
+                2020.08.31
               </div>
             </div>
           </a>
