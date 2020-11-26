@@ -11,7 +11,7 @@
         <meta name="description" content="weekly q">
       
       
-        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.07.13q/">
+        <link rel="canonical" href="https://dpkwhan.github.io/weeklyq/2020/2020.09.07/">
       
       
         <meta name="author" content="David Han">
@@ -21,7 +21,7 @@
     
     
       
-        <title>Volume Weighted Average Price (n-tick) - weekly q</title>
+        <title>2020.09.07 - weekly q</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#volume-weighted-average-price-n-tick" class="md-skip">
+        <a href="#frequency-table" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Volume Weighted Average Price (n-tick)
+              2020.09.07
             
           </span>
         </div>
@@ -182,10 +182,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       2020
@@ -207,11 +209,67 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../2020.09.07/" title="2020.09.07" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        2020.09.07
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="2020.09.07" class="md-nav__link md-nav__link--active">
       2020.09.07
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#question" class="md-nav__link">
+    Question
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -745,6 +803,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#answer" class="md-nav__link">
+    Answer
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -761,46 +826,50 @@
                   
                 
                 
-                <h1 id="volume-weighted-average-price-n-tick">Volume Weighted Average Price (n-tick)<a class="headerlink" href="#volume-weighted-average-price-n-tick" title="Permanent link">&para;</a></h1>
+                <h1 id="frequency-table">Frequency Table<a class="headerlink" href="#frequency-table" title="Permanent link">&para;</a></h1>
 <p><span style="display:block;text-align:center">
-<img alt="image" src="../../assets/img/2020.07.13.png" />
+<img alt="image" src="../../assets/img/2020.09.07.png" />
 </span>
-<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://www.prorealcode.com/wp-content/uploads/2016/03/vwap-did-1459157689pcl84.jpg">here</a></span></p>
+<span style="display:block;text-align:center"><font color="grey">Source: </font>adopted from <a href="https://i.ytimg.com/vi/lyRbCwDDnJo/maxresdefault.jpg">here</a></span></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>The Volume Weighted Average Price (VWAP) is one of the most common benchmark prices in execution algorithms and rolling VWAP is one classical analytics in a Complex Event Processing (CEP) engine. The formula to calculate the VWAP of <span><span class="MathJax_Preview">N</span><script type="math/tex">N</script></span> trades is as follows:</p>
-<div>
-<div class="MathJax_Preview">
-VWAP = \frac{\sum_{i=1}^N p_i \cdot v_i}{\sum_{i=0}^N v_i}
-</div>
-<script type="math/tex; mode=display">
-VWAP = \frac{\sum_{i=1}^N p_i \cdot v_i}{\sum_{i=0}^N v_i}
-</script>
-</div>
-<p>where <span><span class="MathJax_Preview">p_i</span><script type="math/tex">p_i</script></span> and <span><span class="MathJax_Preview">v_i</span><script type="math/tex">v_i</script></span> is the trade price and volume of <span><span class="MathJax_Preview">i^{th}</span><script type="math/tex">i^{th}</script></span> trade, respectively.</p>
-<p>The rolling <em>n</em>-tick VWAP price at tick <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span> is the VWAP of the previous <span><span class="MathJax_Preview">n</span><script type="math/tex">n</script></span> trades, including the current trade <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>. Mathematically,</p>
-<div>
-<div class="MathJax_Preview">
-VWAP_{[i;n]} = \frac{\sum_{j=i-n+1}^i p_j \cdot v_j}{\sum_{j=i-n+1}^i v_j}
-</div>
-<script type="math/tex; mode=display">
-VWAP_{[i;n]} = \frac{\sum_{j=i-n+1}^i p_j \cdot v_j}{\sum_{j=i-n+1}^i v_j}
-</script>
-</div>
+<p>Frequency refers to the number of times an event or a value occurs. A frequency table is a table that lists values, as well as the number of times each value appears in the data set. A histogram is can be built from a frequency table by aggregating over a specified ranges of continuous data values and corresponding number of frequencies.</p>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
-<p>The function <code>simTrade</code> simulates the price and timestamp of each trade in the continuous trading session from 09:30 to 16:00.</p>
-<pre><code class="q">simTrade:{
-  n:100000;
-  system &quot;S -314159&quot;;
-  times:asc 09:30+n?&quot;n&quot;$06:30;
-  syms:n?`AAPL`C`IBM;
-  prices:20+0.01*sums?[n?1.&lt;0.5;-1;1];
-  sizes:n?10000;
-  :([] time:times;sym:syms;price:prices;volume:sizes);
-  };
-trades:simTrade[];
+<p>Write a function (<code>freq</code>) to calculate the frequency table of a list of integer numbers and sort the key values in ascending order.</p>
+<pre><code class="q">system &quot;S -314159&quot;;
+nums:10000?10;
 </code></pre>
 
-<p>Implement a function <code>rollingVwap[trades;n]</code> to calculate the rolling n-tick VWAP for each tick of trade price by symbol. For example, <code>rollingVwap[trades;10]</code> calculates the rolling 10-tick VWAP price for each trade in the table.</p>
+<p>Calling the function against the above list of random integers yields:</p>
+<pre><code class="q">q) show freq nums
+0| 1008
+1| 988
+2| 969
+3| 1054
+4| 977
+5| 986
+6| 1004
+7| 1029
+8| 977
+9| 1008
+</code></pre>
+
+<h2 id="answer">Answer<a class="headerlink" href="#answer" title="Permanent link">&para;</a></h2>
+<p><strong>Method 1:</strong> Use <a href="https://code.kx.com/q/ref/group/">group</a></p>
+<pre><code class="q">freq1:{#[;d] asc key d:count each group x};
+</code></pre>
+
+<p><strong>Method 2:</strong> Use general apply with dyadic functions</p>
+<pre><code class="q">freq2:{@[x!count[x:asc distinct x]#0;x;+;1]};
+</code></pre>
+
+<p>Let's measure the performance of the two implementations:</p>
+<pre><code class="q">q)\ts:100000 freq1 nums
+6577 369536
+q)\ts:100000 freq2 nums
+6843 262688
+</code></pre>
+
+<p>Method 2 runs slightly slower, but it takes significantly less memory.</p>
                 
               
               
@@ -815,6 +884,41 @@ trades:simTrade[];
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../.." title="Home" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../2020.08.31/" title="2020.08.31" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                2020.08.31
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

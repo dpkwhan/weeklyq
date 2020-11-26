@@ -209,6 +209,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../2020.09.07/" title="2020.09.07" class="md-nav__link">
+      2020.09.07
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../2020.08.31/" title="2020.08.31" class="md-nav__link">
       2020.08.31
     </a>
@@ -772,7 +784,7 @@ quoteImbl &= \frac{weightedBidSize - weightedAskSize}{weightedBidSize + weighted
 \end{alignedat}
 </script>
 </div>
-<p>where <span><span class="MathJax_Preview">midQuotePrice=\frac{bidPrice_1 + askPrice_1}{2}</span><script type="math/tex">midQuotePrice=\frac{bidPrice_1 + askPrice_1}{2}</script></span>, <span><span class="MathJax_Preview">bidPrice_i</span><script type="math/tex">bidPrice_i</script></span> and <span><span class="MathJax_Preview">bidSize_i</span><script type="math/tex">bidSize_i</script></span> are the <span><span class="MathJax_Preview">i^{th}</span><script type="math/tex">i^{th}</script></span>-level price and size on the bid side and <span><span class="MathJax_Preview">askPrice_i</span><script type="math/tex">askPrice_i</script></span> and <span><span class="MathJax_Preview">askSize_i</span><script type="math/tex">askSize_i</script></span> are the <span><span class="MathJax_Preview">i^{th}</span><script type="math/tex">i^{th}</script></span>-level price and size on the ask side. The above definition uses the reciprocal of the distance from each price level to the mid-quote as the weight and calculates a weighted average of book presure on bid and ask side.</p>
+<p>where <span><span class="MathJax_Preview">midQuotePrice=\frac{bidPrice_1 + askPrice_1}{2}</span><script type="math/tex">midQuotePrice=\frac{bidPrice_1 + askPrice_1}{2}</script></span>, <span><span class="MathJax_Preview">bidPrice_i</span><script type="math/tex">bidPrice_i</script></span> and <span><span class="MathJax_Preview">bidSize_i</span><script type="math/tex">bidSize_i</script></span> are the <span><span class="MathJax_Preview">i^{th}</span><script type="math/tex">i^{th}</script></span>-level price and size on the bid side and <span><span class="MathJax_Preview">askPrice_i</span><script type="math/tex">askPrice_i</script></span> and <span><span class="MathJax_Preview">askSize_i</span><script type="math/tex">askSize_i</script></span> are the <span><span class="MathJax_Preview">i^{th}</span><script type="math/tex">i^{th}</script></span>-level price and size on the ask side. The above definition uses the reciprocal of the distance from each price level to the mid-quote as the weight and calculates a weighted average of book pressure on bid and ask side.</p>
 <h2 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h2>
 <p>The function <code>simLimitOrderBook</code> simulates the limit order book of a few selected symbols in the continuous trading session from 09:30 to 16:00.</p>
 <pre><code class="q">simLimitOrderBook:{
@@ -798,7 +810,7 @@ quoteImbl &= \frac{weightedBidSize - weightedAskSize}{weightedBidSize + weighted
 lob:simLimitOrderBook[];
 </code></pre>
 
-<p>Implement a function <code>calculateQuoteImbl[lob]</code> to calculate the quote imblance using the top 5 levels of the limit order book.</p>
+<p>Implement a function <code>calculateQuoteImbl[lob]</code> to calculate the quote imbalance using the top 5 levels of the limit order book.</p>
                 
               
               
